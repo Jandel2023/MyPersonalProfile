@@ -67,6 +67,8 @@
         <a href="https://www.facebook.com/demski.chu2xbrothers" target="blank" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2Fdemski.21%3Futm_source%3Dqr%26igsh%3DMzNlNGNkZWQ4Mg%253D%253D%26fbclid%3DIwAR3oZEmOR1MIPLoMA4JmGEf8KjgH7Wm4KIkNu7EZcPgT4dsR64aYnPAEffA&h=AT2-6ucv-wsiNXjmDDzHqhols_mK_QVeXghd0GycCagi1goPylofQeRMA0gdcz3CawSVrPPdoo64Qjk7ikRMFlY_uHqjjQs2bdcIoyhxtzyS0OTXGR4mviOgQPLrInLGftW0kw" target="blank" class="instagram"><i class="bi bi-instagram"></i></a>
         <a href="https://www.linkedin.com/in/jandel-lopez-85a6272ba?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BdTdMV26eSIunEZAja3gO4A%3D%3D" target="blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <button type="button" id="login" onclick="loginclick()" class="btn btn-outline-success">Log-in</button>
+        <button type="button" id="signup" onclick="signupclick()" class="btn btn-outline-success">Sign-up</button>
       </div>
       </div>
 
@@ -722,16 +724,16 @@
         <p>My Works</p>
       </div>
 
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
             <li data-filter="*" class="filter-active" onclick="redirectTomessage()">Add Works</li>
-            {{-- <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-app">App</li>
             <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li> --}}
+            <li data-filter=".filter-web">Web</li>
           </ul>
         </div>
-      </div>
+      </div> --}}
 
       <div class="row portfolio-container">
 
