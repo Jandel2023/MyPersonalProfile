@@ -69,7 +69,10 @@
         <a href="https://www.linkedin.com/in/jandel-lopez-85a6272ba?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BdTdMV26eSIunEZAja3gO4A%3D%3D" target="blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
       </div>
+
+
     </div>
+    
   </header><!-- End Header -->
 
   <!-- ======= About Section ======= -->
@@ -394,7 +397,19 @@
 
       </div>
 
+  <!-- Footer -->
+  <footer class="sticky-footer  ">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Jandel's Profile 2024</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
     </div><!-- End Testimonials  -->
+
+   
 
   </section><!-- End About Section -->
 
@@ -609,6 +624,15 @@
 
      </div> <!-- closing testimonials container -->
 
+      <!-- Footer -->
+      <footer class="sticky-footer  ">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Jandel's Profile 2024</span>
+            </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
     </div><!-- End Testimonials  -->
 
 
@@ -676,7 +700,15 @@
         </div>
 
       </div>
-
+ <!-- Footer -->
+ <footer class="sticky-footer  ">
+  <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Jandel's Profile 2024</span>
+      </div>
+  </div>
+</footer>
+<!-- End of Footer -->
     </div>
   </section><!-- End Services Section -->
 
@@ -721,8 +753,8 @@
           <div class="portfolio-wrap" onclick="redirectTomessage()">
             <img src="assets/img/mlgclone.jpg" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>MLG Portal</h4>
-              <p>Web development</p>
+              <h4>MLG ENROLLMENT</h4>
+              <p>SYSTEM</p>
               <div class="portfolio-links">
                 {{-- <a href="assets/img/mlgclone.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enrollment System"><i class="bx bx-plus"></i></a> --}}
                 <a href="#" title="Portfolio Details"><i class="bx bx-link"></i></a>
@@ -734,7 +766,15 @@
     
 
       </div>
-
+<!-- Footer -->
+<footer class="sticky-footer  ">
+  <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Jandel's Profile 2024</span>
+      </div>
+  </div>
+</footer>
+<!-- End of Footer -->
     </div>
   </section><!-- End Portfolio Section -->
 
@@ -809,9 +849,27 @@
         </div>
         <div class="text-center"><button type="submit">Send Message</button></div>
       </form>
-
+<!-- Footer -->
+<footer class="sticky-footer  ">
+  <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Jandel's Profile 2024</span>
+      </div>
+  </div>
+</footer>
+<!-- End of Footer -->
     </div>
   </section><!-- End Contact Section -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-black">
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; Jandel's Profile 2024</span>
+              </div>
+          </div>
+      </footer>
+      <!-- End of Footer -->
 
   {{-- <div class="credits">
     <!-- All the links in the footer should remain intact. -->

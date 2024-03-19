@@ -1231,3 +1231,6 @@ section .container {
   color: #fff;
 }
 
+footer {
+  padding: 30px;
+}
