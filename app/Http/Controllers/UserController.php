@@ -12,9 +12,39 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     //
-    public function login()
+
+   public function login()
     {
         return view('login');
+    }
+
+    public function signup()
+    {
+        return view('signup');
+    }
+
+    public function loginPost(Request $request)
+    {
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+    
+        if (Auth::attempt($credentials)) {
+            return redirect('/dashboard')->with('success', 'Login Success');
+        }
+
+     
+        return back()->with('error', 'Error Email or Password');
+    }
+
+
+    public function logout()
+    {
+        Auth::logout();
+        return view('/welcome');
+       
     }
 
 }

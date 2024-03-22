@@ -32,6 +32,9 @@ return [
     |            "postmark", "log", "array", "failover", "roundrobin"
     |
     */
+    'mailersend' => [
+        'transport' => 'mailersend',
+    ],
 
     'mailers' => [
         'smtp' => [

@@ -34,11 +34,21 @@
     <div class="container login-container">
         <div class="row justify-content-center">
             <div class="col-md-6 login-form">
+                <div class="card-body p-5 text-center">
+                 
                 <h2 class="text-center mb-4">Login</h2>
-                <form action="login.php" method="POST">
+                <form action="{{route('login')}}" method="POST">
+                    @csrf
+
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('error') }}
+                    </div>
+                    @endif
+                    
                     <div class="form-group">
                         <label for="username">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
+                        <input type="email" name="email" id="email" class="form-control" autofocus   required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
