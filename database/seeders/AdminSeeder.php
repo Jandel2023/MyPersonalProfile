@@ -15,6 +15,10 @@ class AdminSeeder extends Seeder
         $name = 'Jandel Lopez';
         $email = 'jandellopez1997@gmail.com';
         $role = 'Admin';
+        $age = 26;
+        $address = 'Leyte, Hindang 6523';
+        $phone = 9201985437;
+        $website = 'jandel.webactivities.online';
 
         DB::table('users')->insert ([
             [
@@ -22,6 +26,10 @@ class AdminSeeder extends Seeder
                 'email' => $email,
                 'role_name' => $role,
                 'password' => Hash::make('admin12345'),
+                'age' => $age,
+                'address' => $address,
+                'phone' => $phone,
+                'website' => $website,
                 'remember_token' => NULL,
                 'created_at' => now(),
                 'updated_at' => now(),

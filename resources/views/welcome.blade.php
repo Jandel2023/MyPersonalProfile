@@ -54,6 +54,7 @@
         <ul>
           <li><a class="nav-link active" href="#header">Home</a></li>
           <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#blog">Blog</a></li>
           <li><a class="nav-link" href="#resume">Resume</a></li>
           <li><a class="nav-link" href="#services">Services</a></li>
           <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
@@ -127,6 +128,7 @@
       </div>
 
     </div><!-- End About Me -->
+
 
     <!-- ======= Counts ======= -->
     <div class="counts container">
@@ -414,6 +416,78 @@
    
 
   </section><!-- End About Section -->
+
+  <!-- ======= Blog Section ======= -->
+  <section id="blog" class="blog">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Blog</h2>
+        <p></p>
+      </div>
+
+      <div class="row py-4">
+        <div class="col-lg-4" data-aos="fade-right">
+          <img src="assets/img/blog/blog1.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>My Music Gadgets</h3>
+          <p class="fst-italic">
+            I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
+            where I am in my third year of studies. With a passion for innovation and a keen interest in the
+            ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
+          </p>
+        
+        </div>
+      </div>
+
+      <div class="row py-4">
+        <div class="col-lg-4" data-aos="fade-right">
+          <img src="assets/img/blog/blog2.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>This is my favorite Camera</h3>
+          <p class="fst-italic">
+            I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
+            where I am in my third year of studies. With a passion for innovation and a keen interest in the
+            ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
+          </p>
+        
+        </div>
+      </div>
+
+      <div class="row py-4">
+        <div class="col-lg-4" data-aos="fade-right">
+          <img src="assets/img/blog/blog3.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>My new perfume from Ohlo6</h3>
+          <p class="fst-italic">
+            I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
+            where I am in my third year of studies. With a passion for innovation and a keen interest in the
+            ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
+          </p>
+        
+        </div>
+      </div>
+
+  
+    
+
+    
+    <!-- Footer -->
+    <footer class="sticky-footer  ">
+      <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Jandel's Profile 2024</span>
+          </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+  </section><!-- End Blog Section -->
+
 
   <!-- ======= Resume Section ======= -->
   <section id="resume" class="resume">
