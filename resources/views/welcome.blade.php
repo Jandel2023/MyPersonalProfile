@@ -26,7 +26,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
 
   <!-- =======================================================
@@ -428,18 +428,27 @@
 
       <div class="row py-4">
         <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/blog/blog1.jpg" class="img-fluid" alt="">
+            <img src="assets/img/blog/blog1.jpg" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>My Music Gadgets</h3>
-          <p class="fst-italic">
-            I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
-            where I am in my third year of studies. With a passion for innovation and a keen interest in the
-            ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
-          </p>
-        
+            <h3>My Music Gadgets</h3>
+            <p class="fst-italic">
+                I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
+                where I am in my third year of studies. With a passion for innovation and a keen interest in the
+                ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
+            </p>
+            <div class="blog-meta">
+                <span class="author">Author: Jandel Lopez</span>
+                <span class="views">Views: 1000</span>
+                <span class="heart-react">
+                    <button class="heart-btn"><i class="fas fa-heart"></i></button> <!-- This could be a button to react with a heart -->
+                </span>
+                <span class="comments">Comments: 10</span>
+                <span class="comments">Published: 03/24/24</span>
+            </div>
         </div>
-      </div>
+    </div>
+    
 
       <div class="row py-4">
         <div class="col-lg-4" data-aos="fade-right">
@@ -798,16 +807,16 @@
         <p>My Works</p>
       </div>
 
-      {{-- <div class="row">
+      <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active" onclick="redirectTomessage()">Add Works</li>
-            <li data-filter=".filter-app">App</li>
+            {{-- <li data-filter="*" class="filter-active" onclick="redirectTomessage()">Add Works</li> --}}
+            <li data-filter=".filter-app">System</li>
             <li data-filter=".filter-card">Card</li>
             <li data-filter=".filter-web">Web</li>
           </ul>
         </div>
-      </div> --}}
+      </div>
 
       <div class="row portfolio-container">
 

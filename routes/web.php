@@ -32,7 +32,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::delete('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::delete('/welcome', [UserController::class, 'logout'])->name('welcome');
     
 });
 

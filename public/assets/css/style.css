@@ -9,6 +9,10 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+.blog-meta span{
+  padding: 15px;
+}
 .btn.btn-outline-success{
  margin-right: 10px;
  margin-left: 20px;

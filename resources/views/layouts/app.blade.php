@@ -271,7 +271,7 @@ aria-hidden="true">
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
             <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
-            <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
+            <form action="{{ route('welcome') }}" method="POST" class="d-flex" role="search">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-outline-success" type="submit">Logout</button>
