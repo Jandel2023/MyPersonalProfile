@@ -39,6 +39,21 @@
 </head>
 
 <body>
+  <style>
+    .blog-meta span{
+      padding: 15px;
+    }
+.btn.btn-outline-success{
+ margin-right: 10px;
+ margin-left: 20px;
+}
+.box-main {
+  background: rgba(0, 0, 0, 0.9);
+  width: 55%;
+  padding: 15px;
+  border-radius: 15px;
+}
+  </style>
 
   <!-- ======= Header ======= -->
   <header id="header">
