@@ -994,6 +994,15 @@
 
 
   <script>
+
+  function loginclick(){
+    window.location.href = "login";
+  }
+
+  function signupclick(){
+    window.location.href = "signup";
+  }
+
   function redirectToOtherProject() {
     window.open("http://inventory.webactivities.online/", "_blank");
     //window.location.href = "http://inventory.webactivities.online/";

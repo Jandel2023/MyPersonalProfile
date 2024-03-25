@@ -6,13 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
-function loginclick(){
-  window.location.href = "login";
-}
 
-function signupclick(){
-  window.location.href = "signup";
-}
 
 (function() {
   "use strict";
