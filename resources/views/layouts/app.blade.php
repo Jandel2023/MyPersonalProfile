@@ -1,122 +1,4 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-        }
-        .navbar {
-            background-color: #333;
-        }
-        .sidebar {
-            background-color: #222;
-            color: #fff;
-            height: 100vh;
-        }
-        .sidebar-header {
-            padding: 20px;
-        }
-        .sidebar-menu {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar-menu li {
-            margin-bottom: 10px;
-        }
-        .sidebar-menu li a {
-            color: #00ff00;
-        }
-        .content {
-            padding: 20px;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg topbar  static-top shadow navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Dashboard</a>
-    
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ strtoupper(Auth::user()->name) }}</span>
-                        <img class="img-profile rounded-circle" width="50px" src="assets/img/edit_picture.jpg">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">
-                            <i class="fa-solid fa-user-plus text-gray-400"></i> Profile
-                        </a>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                            <i class="fa-solid fa-right-from-bracket text-gray-400"></i> Logout
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block sidebar">
-                <div class="sidebar-header">
-                    <h5>Menu</h5>
-                </div>
-                <ul class="sidebar-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Messages</a></li>
-                    <li><a href="#">Settings</a></li>
-                </ul>
-            </nav>
-            
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <div class="content">
-                    <h2>Main Content</h2>
-                    <p>Welcome to the dashboard. This is the main content area.</p>
-                </div>
-            </main>
-        </div>
-    </div>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content" style="background-color: white; color: green;">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-            <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-outline-danger" type="submit">Logout</button>
-            </form>
-        </div>
-    </div>
-</div>
-</div>
-
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
- 
-</body>
-</html> --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -148,6 +30,9 @@ aria-hidden="true">
 
     <!-- Template Stylesheet -->
     <link href="assets/css/styleone.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </head>
 
 <body>
@@ -169,33 +54,29 @@ aria-hidden="true">
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="assets/img/edit_picture.jpg" alt="" style="width: 40px; height: 40px;">
+                        @if((Auth::user()->role_name == 'Spectator'))
+                            <img class="rounded-circle" src="assets/img/default_profile.png" alt="" style="width: 40px; height: 40px;">
+            
+                        @elseif((Auth::user()->role_name == 'Admin'))
+                            <img class="rounded-circle" src="assets/img/edit_picture.jpg" alt="" style="width: 40px; height: 40px;">
+                        @endif
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        {{-- <h6 class="mb-0">{{ strtoupper(Auth::user()->name) }}</h6> --}}
                         <span>{{ (Auth::user()->role_name) }}</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{route('dashboard')}}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Profile</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Blog</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Certificates</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Portfolio</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Testimonials</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
-                    {{-- <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i></a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Sign In</a>
-                            <a href="signup.html" class="dropdown-item">Sign Up</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                            <a href="blank.html" class="dropdown-item">Blank Page</a>
-                        </div>
-                    </div> --}}
+                    @if(Auth::user()->role_name == 'Admin')
+                    <a href="{{route('dashboard')}}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{{route('blog')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Blog</a>
+                    <a href="{{route('certificate')}}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Certificates</a>
+                    <a href="{{route('portfolio')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Portfolio</a>
+                    <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Testimonials</a>
+                    <a href="{{route('users')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
+                    @elseif(Auth::user()->role_name == 'Spectator')\
+                    <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Testimonials</a>
+                    @endif
                 </div>
             </nav>
         </div>
@@ -217,12 +98,16 @@ aria-hidden="true">
                     
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="assets/img/edit_picture.jpg" alt="" style="width: 40px; height: 40px;">
+                            @if((Auth::user()->role_name == 'Spectator'))
+                            <img class="rounded-circle" src="assets/img/default_profile.png" alt="" style="width: 40px; height: 40px;">
+            
+                        @elseif((Auth::user()->role_name == 'Admin'))
+                            <img class="rounded-circle" src="assets/img/edit_picture.jpg" alt="" style="width: 40px; height: 40px;">
+                        @endif
                             <span class="d-none d-lg-inline-flex">{{ strtoupper(Auth::user()->name) }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            {{-- <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a> --}}
+                            <a href="#" class="dropdown-item">Profile</a>
                             <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">Log Out</a>
                         </div>
                     </div>
@@ -304,6 +189,58 @@ aria-hidden="true">
 
     <!-- Template Javascript -->
     <script src="assets/js/maindashboard.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            // Prevent default behavior of anchor tags
+            // event.preventDefault();
+
+            // Remove active class from all links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add active class to the clicked link
+            this.classList.add('active');
+
+            // Change background color
+            document.body.style.backgroundColor = getComputedStyle(this).getPropertyValue('background-color');
+        });
+
+        // Check if the href matches the current URL
+        if (link.getAttribute('href') === window.location.href) {
+            link.classList.add('active');
+            document.body.style.backgroundColor = getComputedStyle(link).getPropertyValue('background-color');
+        }
+    });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+        // Function to show SweetAlert for unauthorized access
+        function showUnauthorizedAlert(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Unauthorized Access',
+                text: message,
+                confirmButtonColor: '#d33',
+            });
+        }
+
+        // Check for flashed unauthorized message
+        @if(session('unauthorized'))
+            showUnauthorizedAlert('{{ session('unauthorized') }}');
+        @endif
+    });
+
+    </script>
+ 
+
 </body>
 
 </html>
