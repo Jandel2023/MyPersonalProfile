@@ -12,11 +12,12 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     //
-    public function users(){
+    public function users(): view
+    {
         return view('users');
     }
 
-   public function login()
+   public function login(): view
     {
         
         return view('login');
@@ -24,7 +25,7 @@ class UserController extends Controller
 
 
 
-    public function signup()
+    public function signup(): view
     {
         return view('signup');
     }
@@ -36,50 +37,39 @@ class UserController extends Controller
             'password' => $request->password,
         ];
 
-         // Authenticate the user
-         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Authentication was successful
+        
+         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
-    
-        if (Auth::attempt($credentials)) {
-            // return redirect('/dashboard')->with('success', 'Login Success');
-            // Check the role name
-            if ($user->role_name === 'Spectator') {
-                // Redirect to the testimonial view
-                return redirect()->route('testimonial');
-            } else {
-                // Redirect to a different view for other roles
-                // You can replace 'dashboard' with the route name or URL of your choice
-                return redirect()->route('dashboard');
+                if (Auth::attempt($credentials)) {
+                    if ($user->role_name == 'Spectator') {
+                        return redirect()->route('testimonial');
+                    } else {
+                        return redirect()->route('dashboard');
+                    }
+                }
+                    
             }
-        }else {
-            // Authentication failed, redirect back to login page with error message
-            return redirect()->route('login')->with('error', 'Invalid credentials.');
-        }
-    }
+            return back()->with('error', 'Error Email or Password');
     }
 
     public function logout()
     {
         Auth::logout();
-        return view('/welcome');
+        return redirect('/')->with('status', 'You have been logged out.');
        
     }
 
 
-    public function new_signup(Request $request)
+    public function new_signup(Request $request): RedirectResponse
     {
        
         try { 
             $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8',
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
 
             ]);
-    
-         
 
                 $user = new User();
                 $user->name = $request->name;

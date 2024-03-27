@@ -30,8 +30,8 @@
 
     <!-- Template Stylesheet -->
     <link href="assets/css/styleone.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+    
     
 </head>
 
@@ -156,7 +156,7 @@ aria-hidden="true">
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
             <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
-            <form action="{{ route('welcome') }}" method="POST" class="d-flex" role="search">
+            <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-outline-success" type="submit">Logout</button>
@@ -189,8 +189,18 @@ aria-hidden="true">
 
     <!-- Template Javascript -->
     <script src="assets/js/maindashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+
+function addnewtestimonial(){
+    window.location.href = "addnewtestimonial";
+  }
+
+  function backtotestimonail(){
+    window.location.href = "testimonial";
+  }
+
     document.addEventListener("DOMContentLoaded", function() {
     const navLinks = document.querySelectorAll('.nav-link');
 

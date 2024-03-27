@@ -90,14 +90,7 @@
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
-        {{-- <!-- Spinner Start -->
-        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End --> --}}
-
+     
 
         <!-- Sign Up Start -->
         <div class="container-fluid">
@@ -107,14 +100,14 @@
                         <form action="{{route('new_signup')}}" method="POST">
                             @csrf
                             @if(Session::has('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ Session::get('success') }}
-                        </div>
-                        @elseif(Session::has('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ Session::get('error') }}
-                        </div>
-                        @endif
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('success') }}
+                                </div>
+                             @elseif(Session::has('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ Session::get('error') }}
+                                </div>
+                            @endif
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="#" class="">
                                 <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Ja~Lo</h3>
@@ -122,15 +115,15 @@
                             <h3>Sign Up</h3>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" name="name" class="form-control" id="floatingText" placeholder="username" autofocus>
+                            <input type="text" name="name" class="form-control" id="floatingText" placeholder="username" required autofocus>
                             <label for="floatingText">Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@gmail.com">
+                            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@gmail.comd" required>
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="password">
+                            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="password" required>
                             <label for="floatingPassword">Password</label>
                         </div>
                         {{-- <div class="d-flex align-items-center justify-content-between mb-4">
