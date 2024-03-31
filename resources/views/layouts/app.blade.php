@@ -10,7 +10,8 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href={{asset("assets/img/favicon.ico")}} rel="icon">
+    <link id="favicon" href="{{asset("assets/img/edit_picture.jpg")}}" rel="icon">
+    {{-- <link href={{asset("assets/img/edit_picture.jpg")}} rel="icon"> --}}
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,11 +70,11 @@
                 <div class="navbar-nav w-100">
                     @if(Auth::user()->role_name == 'Admin')
                     <a href="{{route('dashboard')}}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{route('blog')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Blog</a>
-                    <a href="{{route('certificate')}}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Certificates</a>
-                    <a href="{{route('portfolio')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Portfolio</a>
-                    <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Testimonials</a>
-                    <a href="{{route('users')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
+                    <a href="{{route('blog')}}" class="nav-item nav-link"><i class="bi bi-file-text me-2"></i>Blog</a>
+                    <a href="{{route('certificate')}}" class="nav-item nav-link"><i class="bi bi-card-text me-2"></i>Certificates</a>
+                    <a href="{{route('portfolio')}}" class="nav-item nav-link"><i class="bi bi-folder-fill me-2"></i>Portfolio</a>
+                    <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="bi bi-person-lines-fill me-2"></i>Testimonials</a>
+                    <a href="{{route('users')}}" class="nav-item nav-link"><i class="bi bi-people-fill me-2"></i>Users</a>
                     @elseif(Auth::user()->role_name == 'Spectator')\
                     <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Testimonials</a>
                     @endif
@@ -233,6 +234,27 @@ aria-hidden="true">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+ 
+        // Function to change the favicon
+        function changeFavicon(iconPath) {
+            var favicon = document.getElementById('favicon');
+            favicon.href = iconPath;
+        }
+
+        // Example: Change favicon on page load
+        window.addEventListener('load', function() {
+            var newFavicon = '{{asset("assets/img/new_icon.jpg")}}'; // Change this to the path of your new favicon
+            changeFavicon(newFavicon);
+        });
+
+
+function backtoportfolio(){
+    window.location.href = "portfolio";
+  }
+
+function addnewportfolio(){
+    window.location.href = "addnewportfolio";
+  }
 
 function addnewtestimonial(){
     window.location.href = "addnewtestimonial";

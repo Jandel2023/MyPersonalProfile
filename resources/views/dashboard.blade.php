@@ -7,7 +7,8 @@
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            {{-- <i class="fa fa-chart-line fa-3x text-primary"></i> --}}
+                            <i class="bi bi-person-bounding-box fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Spectator</p>
                                 <h6 class="mb-0">{{$countspectator}}</h6>
@@ -16,7 +17,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <i class="bi bi-diagram-3 fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Projects</p>
                                 <h6 class="mb-0">4</h6>
@@ -25,7 +26,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <i class="bi bi-person-lines-fill fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Testimonials</p>
                                 <h6 class="mb-0">{{$counttestimonials}}</h6>
@@ -34,7 +35,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <i class="bi bi-card-text fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Certificates</p>
                                 <h6 class="mb-0">6</h6>

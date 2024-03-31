@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Portfolio;
+use App\Models\Testimonials;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -147,6 +149,17 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'An error occurred during registration.');
     }
       
+     }
+
+
+
+     public function viewtowelcome(): View
+     {
+         //
+         $testimonials = Testimonials::all();
+         $portfolios = Portfolio::all();
+     
+         return view('welcome',compact('testimonials','portfolios'));
      }
 
 }

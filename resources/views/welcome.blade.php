@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/edit_profile.jpg" rel="icon">
+  <link href="assets/img/edit_profile.jpg" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -422,48 +422,16 @@
                 ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
             </p>
             <div class="blog-meta">
-                <span class="author">Author: Jandel Lopez</span>
-                <span class="views">Views: 1000</span>
-                <span class="heart-react">
-                    <button class="heart-btn"><i class="fas fa-heart"></i></button> <!-- This could be a button to react with a heart -->
-                </span>
-                <span class="comments">Comments: 10</span>
-                <span class="comments">Published: 03/24/24</span>
+                <h6 class="author">Author: Jandel Lopez</h6>
             </div>
+            <div class="blog-meta">
+              <h6 class="comments">Published: 03/24/24</h6>
+          </div>
         </div>
     </div>
     
 
-      <div class="row py-4">
-        <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/blog/blog2.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>This is my favorite Camera</h3>
-          <p class="fst-italic">
-            I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
-            where I am in my third year of studies. With a passion for innovation and a keen interest in the
-            ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
-          </p>
-        
-        </div>
-      </div>
-
-      <div class="row py-4">
-        <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/blog/blog3.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>My new perfume from Ohlo6</h3>
-          <p class="fst-italic">
-            I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
-            where I am in my third year of studies. With a passion for innovation and a keen interest in the
-            ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
-          </p>
-        
-        </div>
-      </div>
-
+    
   
     
 
@@ -794,46 +762,35 @@
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
-            {{-- <li data-filter="*" class="filter-active" onclick="redirectTomessage()">Add Works</li> --}}
+            {{-- <li data-filter="*" class="filter-active" onclick="redirectTomessage()">Add Works</li>
             <li data-filter=".filter-app">System</li>
             <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+            <li data-filter=".filter-web">Web</li> --}}
           </ul>
         </div>
       </div>
 
       <div class="row portfolio-container">
 
+        @foreach($portfolios as $portfolio)
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap" onclick="redirectToOtherProject()">
-            <img src="assets/img/bg-01.jpg" class="img-fluid" alt="" >
+          <a href="{{$portfolio->portfolio_url}}" target="blank">
+          <div class="portfolio-wrap">
+            <img src="{{asset('storage/'. $portfolio->portfolio_img)}}" class="img-fluid" alt="" >
             <div class="portfolio-info">
-              <h4>Inventory</h4>
-              <p>System</p>
+              <h4>{{$portfolio->portfolio_title}}</h4>
+              <p>{{$portfolio->portfolio_type}}</p>
               <div class="portfolio-links">
                 {{-- <a href="assets/img/bg-01.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Inventory System"><i class="bx bx-plus"></i></a> --}}
                 <a href="#"  title="Go online"><i class="bx bx-link"></i></a>
               </div>
             </div>
           </div>
+          </a>
         </div>
+        @endforeach
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap" onclick="redirectTomessage()">
-            <img src="assets/img/mlgclone.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>MLG ENROLLMENT</h4>
-              <p>SYSTEM</p>
-              <div class="portfolio-links">
-                {{-- <a href="assets/img/mlgclone.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enrollment System"><i class="bx bx-plus"></i></a> --}}
-                <a href="#" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-    
-
+  
       </div>
 <!-- Footer -->
 <footer class="sticky-footer  ">

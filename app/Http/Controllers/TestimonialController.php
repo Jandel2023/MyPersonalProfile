@@ -50,7 +50,7 @@ class TestimonialController extends Controller
         // Check if a profile image is provided
         if ($request->hasFile('profile_img')) {
             $image = $request->file('profile_img');
-            $path = $image->store('public/images');
+            $path = $image->store('public/Testimonial_images');
 
             // Store only the relative path in the database
             $testimonial->profile_img = str_replace('public/', '', $path);
@@ -96,7 +96,7 @@ public function update(Request $request, Testimonials $testimonial): RedirectRes
    // Check if a profile image is provided
    if ($request->hasFile('profile_img')) {
     $image = $request->file('profile_img');
-    $path = $image->store('public/profile_images');
+    $path = $image->store('public/Testimonial_images');
     $testimonial->profile_img = str_replace('public/', '', $path);
 }
 

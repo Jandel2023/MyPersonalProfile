@@ -94,11 +94,16 @@
             <div class="table-wrapper bg-secondary">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-8"><h2>Portfolio's</h2></div>
+                        <div class="col-sm-8"><h2>Portfolio</h2></div>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</button>
+                            <button type="button" onclick="addnewportfolio()" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</button>
                         </div>
                     </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -107,26 +112,64 @@
                             <th>Image</th>
                             <th>Type</th>
                             <th>Title</th>
-                            <th>Actions</th>
+                            <th style="width: 200px;">url</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($portfolio as $portfolios)
                         <tr>
-                            <td>1</td>
-                            <td>Sample</td>
-                            <td>System</td>
-                            <td>Inventory</td>
+                            <td>{{++$i}}</td>
+                            <td><img src="{{ asset('storage/' . $portfolios->portfolio_img) }}" alt="Profile Image" style="max-width: 150px; max-height: 150px;">
+                            </td>
+                            <td>{{$portfolios->portfolio_type}}</td>
+                            <td>{{$portfolios->portfolio_title}}</td>
+                            <td style="max-width: 100%; word-wrap: break-word; text-indent: 10px;">{{$portfolios->portfolio_url}}</td>
                             <td>
                                 <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                <a href="{{route('editportfolio',$portfolios->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$portfolios->id}}"><i class="material-icons">&#xE872;</i></a>
                             </td>
+
+
+
+                <!-- delete Modal-->
+               <div class="modal fade" id="deleteModal{{$portfolios->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background-color: #191C24; color: green;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Portfolio?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Are you sure you want to delete id {{$portfolios->id}}?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
+                            
+                            <form action="{{ route('destroyportfolio',$portfolios->id) }} " method="POST" >
+                                @csrf
+                                @method('DELETE')
+                      
+                                <button class="btn btn-outline-success" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div> {{-- end of deleteModal --}}
+
+
+
                         </tr>
-                        
+                        @endforeach
                     </tbody>
+                   
                 </table>
+                {!! $portfolio->links('pagination::bootstrap-5') !!}
             </div>
         </div>
     </div>     
+
 
 @endsection
