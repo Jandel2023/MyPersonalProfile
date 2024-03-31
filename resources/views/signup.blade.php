@@ -109,7 +109,7 @@
                                 </div>
                             @endif
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="#" class="">
+                            <a href="{{route('viewtowelcome')}}" class="">
                                 <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Ja~Lo</h3>
                             </a>
                             <h3>Sign Up</h3>

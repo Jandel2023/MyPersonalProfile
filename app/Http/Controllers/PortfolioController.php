@@ -8,6 +8,6 @@ class PortfolioController extends Controller
 {
     //
     public function portfolio(){
-        return view('portfolio');
+        return view('portfolios.portfolio');
     }
 }

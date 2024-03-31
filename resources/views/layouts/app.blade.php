@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href={{asset("assets/img/favicon.ico")}} rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,14 +22,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href={{asset("assets/lib/owlcarousel/assets/owl.carousel.min.css")}} rel="stylesheet">
+    <link href={{asset("assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css")}} rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href={{asset("assets/css/bootstrap.min.css")}} rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="assets/css/styleone.css" rel="stylesheet">
+    <link href={{asset("assets/css/styleone.css")}} rel="stylesheet">
    
     
     
@@ -55,10 +55,10 @@
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                         @if((Auth::user()->role_name == 'Spectator'))
-                            <img class="rounded-circle" src="assets/img/default_profile.png" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle" src={{asset("assets/img/default_profile.png")}} alt="" style="width: 40px; height: 40px;">
             
                         @elseif((Auth::user()->role_name == 'Admin'))
-                            <img class="rounded-circle" src="assets/img/edit_picture.jpg" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle" src={{asset("assets/img/edit_picture.jpg")}} alt="" style="width: 40px; height: 40px;">
                         @endif
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
@@ -99,15 +99,15 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             @if((Auth::user()->role_name == 'Spectator'))
-                            <img class="rounded-circle" src="assets/img/default_profile.png" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle" src={{asset("assets/img/default_profile.png")}} alt="" style="width: 40px; height: 40px;">
             
                         @elseif((Auth::user()->role_name == 'Admin'))
-                            <img class="rounded-circle" src="assets/img/edit_picture.jpg" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle" src={{asset("assets/img/edit_picture.jpg")}} alt="" style="width: 40px; height: 40px;">
                         @endif
                             <span class="d-none d-lg-inline-flex">{{ strtoupper(Auth::user()->name) }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#profileModal">Profile</a>
                             <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">Log Out</a>
                         </div>
                     </div>
@@ -167,6 +167,47 @@ aria-hidden="true">
 </div>
 
 
+  <!-- Profile Modal-->
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color: #191C24; color: green;">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+             <center>
+             <div>
+                @if(Auth::user()->role_name == 'Admin')
+                <img class="rounded-circle" src="assets/img/edit_picture.jpg" alt="" style="width: 100px; height: 100px;" alt="Profile Image">
+                @elseif(Auth::user()->role_name == 'Spectator')
+                <img class="rounded-circle" src="assets/img/default_profile.png" alt="" style="width: 100px; height: 100px;" alt="Profile Image">
+                @endif
+            </div>
+             <br>
+             <div><p>{{Auth::user()->name}} </p></div>
+             <div><p>{{Auth::user()->email}} </p></div>
+             <div><p>{{Auth::user()->role_name}} </p></div>
+             {{-- <a class="btn btn-sm btn-secondary" href="{{ route('editprofile',Auth::user()->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit Profile?</a>
+             &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-primary" href="{{ route('changepassword',Auth::user()->id)}}"><i class="fa-solid fa-pen-to-square"></i> Change Password?</a> --}}
+             <a class="btn btn-sm btn-secondary" href="{{ route('editprofile',Auth::user()->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit Profile?</a>
+             &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-primary" href=""><i class="fa-solid fa-pen-to-square"></i> Change Password?</a>
+            </center>
+         </div>
+          <div class="modal-footer">
+              <button class="btn btn-outline-success" type="button" data-dismiss="modal">Back</button>
+             
+          </div>
+      </div>
+  </div>
+</div>
+ {{-- end of profile modal --}}
+
+
+
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
@@ -174,13 +215,13 @@ aria-hidden="true">
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/lib/chart/chart.min.js"></script>
-    <script src="assets/lib/easing/easing.min.js"></script>
-    <script src="assets/lib/waypoints/waypoints.min.js"></script>
-    <script src="assets/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="assets/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src={{asset("assets/lib/chart/chart.min.js")}}></script>
+    <script src={{asset("assets/lib/easing/easing.min.js")}}></script>
+    <script src={{asset("assets/lib/waypoints/waypoints.min.js")}}></script>
+    <script src={{asset("assets/lib/owlcarousel/owl.carousel.min.js")}}></script>
+    <script src={{asset("assets/lib/tempusdominus/js/moment.min.js")}}></script>
+    <script src={{asset("assets/lib/tempusdominus/js/moment-timezone.min.js")}}></script>
+    <script src={{asset("assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js")}}></script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -188,7 +229,7 @@ aria-hidden="true">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="assets/js/maindashboard.js"></script>
+    <script src={{asset("assets/js/maindashboard.js")}}></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>

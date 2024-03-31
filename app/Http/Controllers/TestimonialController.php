@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Models\User;
 
 class TestimonialController extends Controller
 {
@@ -15,19 +16,20 @@ class TestimonialController extends Controller
     public function index(): View
     {
         //
+     
         $testimonial = Testimonials::latest()->paginate(5);
         
-        return view('testimonials',compact('testimonial'))
+        return view('testimonials.testimonials',compact('testimonial'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
-    public function testimonial(){
-        return view('testimonials');
-    }
+    // public function testimonial(){
+    //     return view('testimonials');
+    // }
 
     public function addnewtestimonial(){
-        return view('addnewtestimonial');
+        return view('testimonials.addnewtestimonial');
     }
 
     public function createtestimonial(Request $request)
@@ -91,24 +93,43 @@ public function update(Request $request, Testimonials $testimonial): RedirectRes
         'job_title' => 'required',
     ]);
 
-    if ($request->hasFile('profile_img')) {
-        $image = $request->file('profile_img');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
-        $testimonial->profile_img = $imageName;
-    }
+   // Check if a profile image is provided
+   if ($request->hasFile('profile_img')) {
+    $image = $request->file('profile_img');
+    $path = $image->store('public/profile_images');
+    $testimonial->profile_img = str_replace('public/', '', $path);
+}
 
     $testimonial->content = $request->input('content');
     $testimonial->author = $request->input('author');
     $testimonial->job_title = $request->input('job_title');
     $testimonial->save();
     
-    return redirect()->route('edittestimonial')
-                    ->with('success','Testimonial updated successfully');
+    return redirect()->route('updatetestimonial',compact('testimonial'))
+                    ->with('success','Testimonial updated successfully.');
 }
 
-public function edit(Testimonials $testimonial): View
+// public function edit(Testimonials $testimonial): View
+// {
+//     //
+//     return view('edittestimonial', compact('testimonial'));
+// }
+
+public function edit($id)
 {
-    return view('edittestimonial',compact('testimonial'));
+    $testimonial = Testimonials::findOrFail($id);
+    return view('testimonials.edittestimonial', compact('testimonial'));
 }
+
+
+public function viewtowelcome(): View
+{
+    //
+    $testimonials = Testimonials::all();
+    
+    return view('welcome',compact('testimonials'));
+}
+
+
+
 }

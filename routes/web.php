@@ -32,7 +32,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/loginpost', [UserController::class, 'loginPost'])->name('loginpost');
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup', [UserController::class, 'new_signup'])->name('new_signup');
-    
+    Route::get('/', [TestimonialController::class, 'viewtowelcome'])->name('viewtowelcome');
+
 });
 
 
@@ -43,14 +44,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/certificate', [CertificateController::class, 'certificates'])->name('certificate');
     Route::get('/portfolio', [PortfolioController::class, 'portfolio'])->name('portfolio');
     Route::post('/createtestimonial', [TestimonialController::class, 'createtestimonial'])->name('createtestimonial');
-    Route::get('/testimonial', [TestimonialController::class, 'testimonial'])->name('testimonial');
     Route::get('/users', [UserController::class, 'users'])->name('users');
+    Route::get('/editprofile', [UserController::class, 'editprofile'])->name('editprofile');
+    Route::post('/updateprofile', [UserController::class, 'updateprofile'])->name('updateprofile');
     Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial');
     Route::get('/addnewtestimonial', [TestimonialController::class, 'addnewtestimonial'])->name('addnewtestimonial');
     Route::delete('/testimonial/{testimonial}', [TestimonialController::class, 'destroy'])->name('destroytestimonial');
-    Route::get('/edittestimonial/{testimonial}', [TestimonialController::class, 'edit'])->name('edittestimonial');
-    Route::patch('/edittestimonial/{testimonial}', [TestimonialController::class, 'update'])->name('edittestimonial');
-    
+    Route::get('/edittestimonial/{id}', [TestimonialController::class, 'edit'])->name('edittestimonial');
+    // Route::patch('/edittestimonial/{testimonial}', [TestimonialController::class, 'update'])->name('edittestimonial');
+    Route::put('/edittestimonial/{testimonial}', [TestimonialController::class, 'update'])->name('updatetestimonial');
 });
 
 
@@ -61,7 +63,7 @@ Route::group(['middleware' => 'Spectator'], function(){
     Route::get('/portfolio', [PortfolioController::class, 'portfolio'])->name('portfolio');
     ROute::get('/users', [UserController::class, 'users'])->name('users');
  
-    Route::get('/welcome', function () { return view ('welcome');});
+   
    
 
 });

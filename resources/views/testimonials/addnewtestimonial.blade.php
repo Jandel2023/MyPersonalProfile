@@ -11,7 +11,7 @@
                 <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                     <form action="{{route('createtestimonial')}}" method ="POST" enctype="multipart/form-data">
                         @csrf
-                        @if(Session::has('success'))
+                    @if(Session::has('success'))
                     <div class="alert alert-success" role="alert">
                         {{ Session::get('success') }}
                     </div>
@@ -35,13 +35,14 @@
                         <label for="floatingInput">Content</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input type="text" name="author" class="form-control" id="floatingPassword" placeholder="author" required>
-                        <label for="floatingPassword">Author</label>
-                    </div>
-                    <div class="form-floating mb-4">
                         <input type="text" name="job_title" class="form-control" id="floatingPassword" placeholder="work" required>
                         <label for="floatingPassword">Work</label>
                     </div>
+                    <div class="author" >
+                        <input type="text" name="author" class="form-control" id="floatingPassword" placeholder="author" value="{{Auth::user()->name}}" readonly>
+                        <label for="floatingPassword">Author</label>
+                    </div>
+                   
                   
                     <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Create</button>
                     <p class="text-center mb-0">Do you want to go back?<button type="button" class="btn btn-link" onclick="backtotestimonail()">Back</button></p>
@@ -52,4 +53,9 @@
     </div>
     <!-- testimonailform End -->
 </div>
+<style>
+    .author{
+        visibility: hidden;
+    }
+</style>
 @endsection

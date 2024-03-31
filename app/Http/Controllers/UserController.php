@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
+
 class UserController extends Controller
 {
     //
     public function users(): view
     {
-        return view('users');
+        return view('users.users');
     }
 
    public function login(): view
@@ -96,5 +97,56 @@ class UserController extends Controller
                 return redirect()->back()->with('error', 'An error occurred during Sign-up.');
             }
     }
+
+    public function editprofile(): View
+    {
+        //
+        $user = Auth::user();
+        return view('editprofile',compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateprofile(Request $request): RedirectResponse
+    {
+        try{
+        $user = Auth::user();
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255' . $user->id,
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+
+    // Check if a profile image is provided
+    if ($request->hasFile('profile_image')) {
+        $image = $request->file('profile_image');
+        $path = $image->store('public/profile_images');
+        $user->profile_image = str_replace('public/', '', $path);
+    }
+
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+    
+    $user->save();
+
+
+    return back()->with('success', 'Profile updated successfully');
+}
+    catch (\Illuminate\Database\QueryException $e) 
+    {
+        // Catch the exception for duplicate entry error
+        $errorCode = $e->errorInfo[1];
+
+        if ($errorCode == 1062) {
+            // Handle duplicate entry error, for example, redirect back with an error message
+            return redirect()->back()->with('error', 'Duplicate entry for email.');
+        }
+
+        return redirect()->back()->with('error', 'An error occurred during registration.');
+    }
+      
+     }
 
 }

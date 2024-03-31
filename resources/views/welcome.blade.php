@@ -343,70 +343,39 @@
       <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
         <div class="swiper-wrapper">
 
+          @foreach($testimonials as $testimonial)
           <div class="swiper-slide">
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Working with jandel was an absolute pleasure! Their attention to detail and commitment to excellence truly shone through in every aspect of the project. Their expertise in web development ensured that our website not only looked fantastic but also functioned flawlessly. I would highly recommend jandel to anyone seeking a talented and reliable web developer.
+               {{$testimonial->content}}
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
+              <img src="{{ asset('storage/'. $testimonial->profile_img) }}" class="testimonial-img" alt="">
+              <h3>{{$testimonial->author}}</h3>
+              <h4>{{$testimonial->job_title}}</h4>
             </div>
-          </div><!-- End testimonial item -->
+          </div>
+          @endforeach
+          <!-- End testimonial item -->
 
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                I had the pleasure of collaborating with jandel on a complex web development project, and I couldn't be happier with the results. Their technical proficiency and problem-solving abilities were truly impressive. Jandel approached every challenge with a positive attitude and a determination to find the best possible solution. It's clear that they are passionate about their work and dedicated to delivering top-notch results.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-            </div>
-          </div><!-- End testimonial item -->
+          {{-- <div class="swiper-slide">
+            @foreach($testimonials as $testimonial)
+                <div class="testimonial-item">
+                    <p>
+                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        {{ $testimonial->content }}
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                    <img src="{{ $testimonial->profile_img }}" class="testimonial-img" alt="">
+                    <h3>{{ $testimonial->author }}</h3>
+                    <h4>{{ $testimonial->job_title }}</h4>
+                </div>
+            @endforeach
+        </div> --}}
+        
 
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                I hired Jandel to revamp our company's outdated website, and I couldn't be more impressed with the outcome. From the initial consultation to the final implementation, Jandel demonstrated professionalism, creativity, and a deep understanding of web development best practices. The end result exceeded our expectations, and I attribute that success to jandel's expertise and dedication to excellence.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                As someone with limited technical knowledge, I was initially overwhelmed by the prospect of building a website for my business. Fortunately, I found Jandel, and they made the entire process smooth and stress-free. Jandel patiently guided me through each step, offering valuable insights and suggestions along the way. Thanks to their expertise and support, I now have a professional website that perfectly represents my brand.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                I've had the pleasure of collaborating with Jandel on multiple web development projects, and I am continually impressed by their professionalism and technical proficiency. Whether it's coding complex features or optimizing site performance, Jandel consistently delivers exceptional results on time and within budget. They are a true asset to any team, and I look forward to working with them again in the future.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-            </div>
-          </div><!-- End testimonial item -->
+        
 
         </div>
         <div class="swiper-pagination"></div>

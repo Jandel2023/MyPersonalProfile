@@ -8,6 +8,6 @@ class CertificateController extends Controller
 {
     //
     public function certificates(){
-        return view('certificates');
+        return view('certificates.certificates');
     }
 }
