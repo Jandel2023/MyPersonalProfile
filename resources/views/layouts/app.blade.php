@@ -70,8 +70,8 @@
                 <div class="navbar-nav w-100">
                     @if(Auth::user()->role_name == 'Admin')
                     <a href="{{route('dashboard')}}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{route('blog')}}" class="nav-item nav-link"><i class="bi bi-file-text me-2"></i>Blog</a>
-                    <a href="{{route('certificate')}}" class="nav-item nav-link"><i class="bi bi-card-text me-2"></i>Certificates</a>
+                    <a href="{{route('blogs.index')}}" class="nav-item nav-link"><i class="bi bi-file-text me-2"></i>Blog</a>
+                    <a href="{{route('certificates.index')}}" class="nav-item nav-link"><i class="bi bi-card-text me-2"></i>Certificates</a>
                     <a href="{{route('portfolio')}}" class="nav-item nav-link"><i class="bi bi-folder-fill me-2"></i>Portfolio</a>
                     <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="bi bi-person-lines-fill me-2"></i>Testimonials</a>
                     <a href="{{route('users')}}" class="nav-item nav-link"><i class="bi bi-people-fill me-2"></i>Users</a>
@@ -195,7 +195,7 @@ aria-hidden="true">
              {{-- <a class="btn btn-sm btn-secondary" href="{{ route('editprofile',Auth::user()->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit Profile?</a>
              &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-primary" href="{{ route('changepassword',Auth::user()->id)}}"><i class="fa-solid fa-pen-to-square"></i> Change Password?</a> --}}
              <a class="btn btn-sm btn-secondary" href="{{ route('editprofile',Auth::user()->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit Profile?</a>
-             &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-primary" href=""><i class="fa-solid fa-pen-to-square"></i> Change Password?</a>
+             &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-sm btn-primary" href="{{route('changepassword',Auth::user()->id)}}"><i class="fa-solid fa-pen-to-square"></i> Change Password?</a>
             </center>
          </div>
           <div class="modal-footer">
@@ -234,23 +234,20 @@ aria-hidden="true">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+
+function backtoblog(){
+    window.location.href = "blog";
+}
  
-        // Function to change the favicon
-        function changeFavicon(iconPath) {
-            var favicon = document.getElementById('favicon');
-            favicon.href = iconPath;
-        }
-
-        // Example: Change favicon on page load
-        window.addEventListener('load', function() {
-            var newFavicon = '{{asset("assets/img/new_icon.jpg")}}'; // Change this to the path of your new favicon
-            changeFavicon(newFavicon);
-        });
-
+function addnewblog(){
+    window.location.href = "addnewblog";
+}
 
 function backtoportfolio(){
     window.location.href = "portfolio";
   }
+
+
 
 function addnewportfolio(){
     window.location.href = "addnewportfolio";

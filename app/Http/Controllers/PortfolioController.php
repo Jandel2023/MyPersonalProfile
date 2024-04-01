@@ -30,30 +30,23 @@ class PortfolioController extends Controller
     public function createportfolio(Request $request)
 {
     try {
-        $request->validate([
+       $data = $request->validate([
             'portfolio_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'portfolio_type' => 'required',
             'portfolio_title' => 'required',
             'portfolio_url' => 'required',
         ]);
 
-        $portfolio = new Portfolio();
-        $portfolio->portfolio_type = $request->portfolio_type;
-        $portfolio->portfolio_title = $request->portfolio_title;
-        $portfolio->portfolio_url = $request->portfolio_url;
-
+      
         // Check if a profile image is provided
         if ($request->hasFile('portfolio_img')) {
-            $image = $request->file('portfolio_img');
-            $path = $image->store('public/portfolio_images');
-
-            // Store only the relative path in the database
-            $portfolio->portfolio_img = str_replace('public/', '', $path);
+            $profilePath = $request->file('portfolio_img')->store('portfolioimage', 'public');
+            $data['portfolio_img'] = $profilePath;
         }
 
-        $portfolio->save();
+        Portfolio::create($data);
         
-        return back()->with('success', 'Portfolio added successfully');
+        return redirect()->route('portfolio')->with('success', 'Portfolio added successfully');
     } catch (\Illuminate\Database\QueryException $e) {
         // Catch specific exceptions and provide appropriate error messages
         $errorCode = $e->errorInfo[1];
@@ -81,7 +74,7 @@ public function destroy(portfolio $portfolio): RedirectResponse
 
 public function update(Request $request, Portfolio $portfolio): RedirectResponse
 {
-    $request->validate([
+   $data = $request->validate([
         'portfolio_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         'portfolio_type' => 'required',
         'portfolio_title' => 'required',
@@ -90,17 +83,13 @@ public function update(Request $request, Portfolio $portfolio): RedirectResponse
 
    // Check if a profile image is provided
    if ($request->hasFile('portfolio_img')) {
-    $image = $request->file('portfolio_img');
-    $path = $image->store('public/portfolio_images');
-    $portfolio->portfolio_img = str_replace('public/', '', $path);
+    $profilePath = $request->file('portfolio_img')->store('portfolioimage', 'public');
+    $data['portfolio_img'] = $profilePath;
 }
 
-    $portfolio->portfolio_type = $request->input('portfolio_type');
-    $portfolio->portfolio_title = $request->input('portfolio_title');
-    $portfolio->portfolio_url = $request->input('portfolio_url');
-    $portfolio->save();
+$portfolio->update($data);
     
-    return redirect()->route('updateportfolio',compact('portfolio'))
+    return redirect()->route('portfolio',compact('portfolio'))
                     ->with('success','Portfolio updated successfully.');
 }
 

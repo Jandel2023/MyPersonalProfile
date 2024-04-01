@@ -96,9 +96,14 @@
                     <div class="row">
                         <div class="col-sm-8"><h2>Certificates</h2></div>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</button>
+                            <a href="{{ route('certificates.create') }}" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</a>
                         </div>
                     </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -109,18 +114,48 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($certificate as $certificates)
                         <tr>
-                            <td>1</td>
-                            <td>Sample</td>
+                            <td>{{++$i}}</td>
+                            <td><img src="{{ asset('storage/' . $certificates->img_cert) }}" alt="Profile Image" style="max-width: 150px; max-height: 150px;"></td>
                             <td>
                                 <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                <a href="{{route('certificates.edit',$certificates->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$certificates->id}}"><i class="material-icons">&#xE872;</i></a>
                             </td>
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ $certificates->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color: #191C24; color: green;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete certificate?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this certificate?
+                <img src="{{ asset('storage/' . $certificates->img_cert) }}" alt="Cetificate Image" style="max-width: 100px; max-height: 100px; border-radius:50%;">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
+                
+                <form action="{{ route('certificates.destroy', $certificates->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-success" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
                         </tr>
-                        
+                        @endforeach
                     </tbody>
                 </table>
+                {!! $certificate->links('pagination::bootstrap-5') !!}
             </div>
         </div>
     </div>     

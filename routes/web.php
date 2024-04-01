@@ -22,6 +22,7 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view ('welcome');
@@ -50,11 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', [UserController::class, 'users'])->name('users');
     Route::get('/editprofile', [UserController::class, 'editprofile'])->name('editprofile');
     Route::post('/updateprofile', [UserController::class, 'updateprofile'])->name('updateprofile');
+    Route::get('/changepassword', [UserController::class, 'changepass'])->name('changepassword');
+    Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
 
-    Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
+    Route::resource('/blogs', BlogController::class);
+   
 
-
-    Route::get('/certificate', [CertificateController::class, 'certificates'])->name('certificate');
+    Route::resource('/certificates', CertificateController::class);
 
     Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
     Route::get('/addnewportfolio', [PortfolioController::class, 'addnewportfolio'])->name('addnewportfolio');
@@ -75,16 +78,16 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'Spectator'], function(){
-    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
-    Route::get('/certificate', [CertificateController::class, 'certificates'])->name('certificate');
+    // Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    // Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
+    // Route::get('/certificate', [CertificateController::class, 'certificates'])->name('certificate');
     // Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
-    ROute::get('/users', [UserController::class, 'users'])->name('users');
+    // ROute::get('/users', [UserController::class, 'users'])->name('users');
     
    
    
 
 });
-// Auth::routes();
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

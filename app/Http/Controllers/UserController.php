@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Blog;
 use App\Models\Portfolio;
 use App\Models\Testimonials;
 use Illuminate\Http\Request;
@@ -153,13 +154,55 @@ class UserController extends Controller
 
 
 
+   
+     public function changepass():View
+     {
+        $user = Auth::user();
+        return view('users/changepassword',compact('user'));
+     }
+
+
+
+
+
+     public function changepassword(Request $request): RedirectResponse
+     {
+        $user = Auth::user();
+
+        $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required', // You can adjust the validation rules as needed
+            'confirmpass' => 'required',
+        ]);
+
+         // Check if the old password matches the current password
+        if (!Hash::check($request->oldpassword, $user->password)) {
+            return redirect()->back()->with('error', 'Old password does not match.');
+        }
+
+         // Check if the new password and confirm password match
+         if ($request->newpassword !== $request->confirmpass) {
+            return redirect()->back()->with('error', 'New password and confirm password do not match.');
+        }
+
+         // Update the user's password
+         $user->password = Hash::make($request->newpassword);
+         $user->update();
+ 
+         return redirect()->back()->with('success', 'Password updated successfully.');
+
+     }
+
+
      public function viewtowelcome(): View
      {
          //
          $testimonials = Testimonials::all();
          $portfolios = Portfolio::all();
+         $blogs = Blog::all();
      
-         return view('welcome',compact('testimonials','portfolios'));
+         return view('welcome',compact('testimonials','portfolios','blogs'));
      }
+
 
 }

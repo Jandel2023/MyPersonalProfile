@@ -96,9 +96,14 @@
                     <div class="row">
                         <div class="col-sm-8"><h2>Blogs</h2></div>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</button>
+                            <a href="{{ route('blogs.create') }}" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</a>
                         </div>
                     </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -108,26 +113,64 @@
                             <th>Title</th>
                             <th>Content</th>
                             <th>Author</th>
-                            <th>Actions</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($testimonial as $testimonials)
                         <tr>
-                            <td>1</td>
-                            <td>Sample</td>
-                            <td>Administration</td>
-                            <td>The Quick Brown Fox Jump Over The Lazy Dog.</td>
-                            <td>Jandel Lopez</td>
+                            <td>{{++$i}}</td>
+                            <td><img src="{{ asset('storage/' . $testimonials->image_blog) }}" alt="Profile Image" style="max-width: 150px; max-height: 150px;">
+                            </td>
+                            <td>{{$testimonials->title}}</td>
+                            <td>{{$testimonials->content}}</td>
+                            <td>{{$testimonials->author}}</td>
                             <td>
                                 <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                <a href="{{route('blogs.edit',$testimonials->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$testimonials->id}}"><i class="material-icons">&#xE872;</i></a>
                             </td>
+
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ $testimonials->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color: #191C24; color: green;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Blog?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this blog?
+                <img src="{{ asset('storage/' . $testimonials->image_blog) }}" alt="Profile Image" style="max-width: 100px; max-height: 100px; border-radius:50%;">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
+                
+                <form action="{{ route('blogs.destroy', $testimonials->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-success" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
                         </tr>
-                        
+                        @endforeach
                     </tbody>
+                   
                 </table>
+                {!! $testimonial->links('pagination::bootstrap-5') !!}
             </div>
         </div>
     </div>     
+
+
 @endsection

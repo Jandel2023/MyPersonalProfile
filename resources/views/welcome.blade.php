@@ -410,25 +410,25 @@
         <p></p>
       </div>
 
+      @foreach($blogs as $blog)
       <div class="row py-4">
         <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/blog/blog1.jpg" class="img-fluid" alt="">
+            <img src="{{ asset('storage/'. $blog->image_blog) }}" class="img-fluid" style="width: 200px; height: 150px;" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>My Music Gadgets</h3>
+            <h3>{{$blog->title}}</h3>
             <p class="fst-italic">
-                I am pursuing a Bachelor of Science in Information Technology (BSIT) at MLG College of Learning,
-                where I am in my third year of studies. With a passion for innovation and a keen interest in the
-                ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
+               {{$blog->content}}
             </p>
             <div class="blog-meta">
-                <h6 class="author">Author: Jandel Lopez</h6>
+                <h6 class="author">Author: {{$blog->author}}</h6>
             </div>
             <div class="blog-meta">
-              <h6 class="comments">Published: 03/24/24</h6>
+              <h6 class="comments">Published: {{ $blog->created_at->format('m/d/y') }}</h6>
           </div>
         </div>
     </div>
+    @endforeach
     
 
     
@@ -596,55 +596,12 @@
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6" aria-label="Slide 7"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <img src="assets/img/certificates/photoediting.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-item active d-flex justify-content-center" data-bs-interval="10000">
+            <img src="assets/img/certificates/photoediting.jpg" class="img-fluid" style="width: 900px; height: 500px;" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              {{-- <h5 style="color: white">First Place</h5>
-              <p style="color: white">Photo Editing Contenst</p> --}}
             </div>
           </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="assets/img/certificates/quizebee.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              {{-- <h5 style="color: white">Rank 3</h5>
-              <p style="color: white">IT Pro Week Quize Bee 2023</p> --}}
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/certificates/nstp.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              {{-- <h5 style="color: white">NSTP</h5>
-              <p style="color: white">NSTP-11 AND NSTP-12</p> --}}
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/certificates/Image.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              {{-- <h5 style="color: white">OJT</h5>
-              <p style="color: white">On - Job - Trainee</p> --}}
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/certificates/smo.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              {{-- <h5 style="color: white">SMO</h5>
-              <p style="color: white">Site Material Officer</p> --}}
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/certificates/symposium.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              {{-- <h5 style="color: white">symposium</h5>
-              <p style="color: white">Sexual Harassment & Teenage Pregnancy</p> --}}
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/certificates/tesda.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              {{-- <h5 style="color: white">TESDA</h5>
-              <p style="color: white">Computer Programming NCIV</p> --}}
-            </div>
-          </div>
+          
 
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">

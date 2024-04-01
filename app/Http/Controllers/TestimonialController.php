@@ -51,9 +51,9 @@ class TestimonialController extends Controller
                 $data['profile_img'] = $profilePath;
             }
     
-            $testimonial = Testimonials::create($data);
+            Testimonials::create($data);
     
-            return back()->with('success', 'Testimonial added successfully');
+            return redirect()->route('testimonial')->with('success', 'Testimonial added successfully');
         } catch (\Illuminate\Database\QueryException $e) {
             $errorCode = $e->errorInfo[1];
             
@@ -94,7 +94,7 @@ public function update(Request $request, Testimonials $testimonial): RedirectRes
 
         $testimonial->update($data);
 
-        return redirect()->route('updatetestimonial', ['testimonial' => $testimonial])
+        return redirect()->route('testimonial', ['testimonial' => $testimonial])
                         ->with('success','Testimonial updated successfully.');
     } catch (\Illuminate\Database\QueryException $e) {
         // Handle database query exceptions if needed
