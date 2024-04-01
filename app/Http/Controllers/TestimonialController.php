@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Testimonials;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Console\View\Components\Alert;
+
 
 class TestimonialController extends Controller
 {
@@ -33,45 +37,34 @@ class TestimonialController extends Controller
     }
 
     public function createtestimonial(Request $request)
-{
-    try {
-        $request->validate([
-            'profile_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'content' => 'required',
-            'author' => 'required',
-            'job_title' => 'required',
-        ]);
-
-        $testimonial = new Testimonials();
-        $testimonial->content = $request->content;
-        $testimonial->author = $request->author;
-        $testimonial->job_title = $request->job_title;
-
-        // Check if a profile image is provided
-        if ($request->hasFile('profile_img')) {
-            $image = $request->file('profile_img');
-            $path = $image->store('public/Testimonial_images');
-
-            // Store only the relative path in the database
-            $testimonial->profile_img = str_replace('public/', '', $path);
+    {
+        try {
+            $data = $request->validate([
+                'profile_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'content' => 'required',
+                'author' => 'required',
+                'job_title' => 'required',
+            ]);
+    
+            if ($request->hasFile('profile_img')) {
+                $profilePath = $request->file('profile_img')->store('testimonialprofile', 'public');
+                $data['profile_img'] = $profilePath;
+            }
+    
+            $testimonial = Testimonials::create($data);
+    
+            return back()->with('success', 'Testimonial added successfully');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            
+            if ($errorCode == 1062) {
+                return back()->with('error', 'Duplicate entry error occurred.');
+            }
+    
+            return back()->with('error', 'An error occurred during testimonial creation.');
         }
-
-        $testimonial->save();
-        
-        return back()->with('success', 'Testimonial added successfully');
-    } catch (\Illuminate\Database\QueryException $e) {
-        // Catch specific exceptions and provide appropriate error messages
-        $errorCode = $e->errorInfo[1];
-
-        if ($errorCode == 1062) {
-            return redirect()->back()->with('error', 'Duplicate entry error occurred.');
-        }
-
-        // Handle other database exceptions if needed
-
-        return redirect()->back()->with('error', 'An error occurred during testimonial creation.');
     }
-}
+    
 
 
 
@@ -86,34 +79,31 @@ public function destroy(Testimonials $testimonial): RedirectResponse
 
 public function update(Request $request, Testimonials $testimonial): RedirectResponse
 {
-    $request->validate([
-        'profile_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        'content' => 'required',
-        'author' => 'required',
-        'job_title' => 'required',
-    ]);
+    try {
+        $data = $request->validate([
+            'profile_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'content' => 'required',
+            'author' => 'required',
+            'job_title' => 'required',
+        ]);
 
-   // Check if a profile image is provided
-   if ($request->hasFile('profile_img')) {
-    $image = $request->file('profile_img');
-    $path = $image->store('public/Testimonial_images');
-    $testimonial->profile_img = str_replace('public/', '', $path);
+        if ($request->hasFile('profile_img')) {
+            $profilePath = $request->file('profile_img')->store('testimonialprofile', 'public');
+            $data['profile_img'] = $profilePath;
+        }
+
+        $testimonial->update($data);
+
+        return redirect()->route('updatetestimonial', ['testimonial' => $testimonial])
+                        ->with('success','Testimonial updated successfully.');
+    } catch (\Illuminate\Database\QueryException $e) {
+        // Handle database query exceptions if needed
+        return redirect()->back()->with('error', 'An error occurred during testimonial update.');
+    }
 }
 
-    $testimonial->content = $request->input('content');
-    $testimonial->author = $request->input('author');
-    $testimonial->job_title = $request->input('job_title');
-    $testimonial->save();
-    
-    return redirect()->route('updatetestimonial',compact('testimonial'))
-                    ->with('success','Testimonial updated successfully.');
-}
 
-// public function edit(Testimonials $testimonial): View
-// {
-//     //
-//     return view('edittestimonial', compact('testimonial'));
-// }
+
 
 public function edit($id)
 {
