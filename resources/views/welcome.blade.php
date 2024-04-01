@@ -587,32 +587,30 @@
 
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6" aria-label="Slide 7"></button>
+            @for($i = 0; $i < $countcert; $i++)
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ $i }}" @if($i === 0) class="active" @endif aria-label="Slide {{ $i + 1 }}"></button>
+            @endfor
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active d-flex justify-content-center" data-bs-interval="10000">
-            <img src="assets/img/certificates/photoediting.jpg" class="img-fluid" style="width: 900px; height: 500px;" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          
-
+            @foreach($certificates as $index => $certificate)
+                <div class="carousel-item @if($index === 0) active @endif  justify-content-center align-items-center " data-bs-interval="10000" style="padding-left: 53px;">
+                    <img src="{{ asset('storage/'. $certificate->img_cert) }}" class="img-fluid" style="width: 900px; height: 500px;" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <!-- Carousel caption content goes here -->
+                    </div>
+                </div>
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
         </button>
-      </div>
+    </div>
+    
      
      
 

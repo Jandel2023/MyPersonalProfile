@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Blog;
+use App\Models\Certificates;
 use App\Models\Portfolio;
 use App\Models\Testimonials;
 use Illuminate\Http\Request;
@@ -200,8 +201,10 @@ class UserController extends Controller
          $testimonials = Testimonials::all();
          $portfolios = Portfolio::all();
          $blogs = Blog::all();
+        $certificates = Certificates::all();
+        $countcert = Certificates::count();
      
-         return view('welcome',compact('testimonials','portfolios','blogs'));
+         return view('welcome',compact('testimonials','portfolios','blogs','certificates','countcert'));
      }
 
 
