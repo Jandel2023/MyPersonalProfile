@@ -40,8 +40,8 @@
                             <input type="email" name="email" class="form-control" id="email" value="{{Auth::user()->email}}" placeholder="email"  required>
                         </div>
                         <div class="mb-3">
-                            <label for="contact" class="form-label">Contact:</label>
-                            <input type="number" name="contact" class="form-control" id="contact" value="{{Auth::user()->phone}}" placeholder="contact"  required>
+                            <label for="phone" class="form-label">Contact:</label>
+                            <input type="number" name="phone" class="form-control" id="contact" value="{{Auth::user()->phone}}" placeholder="contact"  required>
                         </div>
                         <div class="mb-3">
                             <label for="website" class="form-label">Website:</label>

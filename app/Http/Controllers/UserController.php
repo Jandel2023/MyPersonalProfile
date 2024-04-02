@@ -119,7 +119,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'address' => 'nullable',
             'email' => 'required|string|email|max:255' . $user->id,
-            'contact' => 'nullable',
+            'phone' => 'nullable',
             'website' => 'nullable',
             
         
