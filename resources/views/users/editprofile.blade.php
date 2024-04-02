@@ -41,7 +41,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="contact" class="form-label">Contact:</label>
-                            <input type="tel" name="contact" class="form-control" id="contact" value="{{Auth::user()->phone}}" placeholder="contact"  required>
+                            <input type="number" name="contact" class="form-control" id="contact" value="{{Auth::user()->phone}}" placeholder="contact"  required>
                         </div>
                         <div class="mb-3">
                             <label for="website" class="form-label">Website:</label>

@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
         $role = 'Admin';
         $address = 'Leyte, Hindang 6523';
         $phone = 9201985437;
-        $website = 'jandel.webactivities.online';
+        $website = 'http://jandel.webactivities.online';
 
         DB::table('users')->insert ([
             [
