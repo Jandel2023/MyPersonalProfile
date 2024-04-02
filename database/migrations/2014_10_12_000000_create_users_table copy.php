@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('age')->default('1997-09-02');
             $table->string('address')->nullable();
             $table->string('website')->nullable();
-            $table->bigInteger('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('profile_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
