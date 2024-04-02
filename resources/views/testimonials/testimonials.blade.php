@@ -118,6 +118,50 @@
                     </thead>
                     <tbody>
                         @foreach($testimonial as $testimonials)
+                        @if(Auth::user()->role_name == 'Admin')
+                        <tr>
+                            <td>{{++$i}}</td>
+                            <td><img src="{{ asset('storage/' . $testimonials->profile_img) }}" alt="Profile Image" style="max-width: 150px; max-height: 150px;">
+                            </td>
+                            <td>{{$testimonials->content}}</td>
+                            <td>{{$testimonials->author}}</td>
+                            <td>{{$testimonials->job_title}}</td>
+                            <td>
+                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                <a href="{{route('edittestimonial',$testimonials->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$testimonials->id}}"><i class="material-icons">&#xE872;</i></a>
+                            </td>
+
+
+
+                <!-- delete Modal-->
+               <div class="modal fade" id="deleteModal{{$testimonials->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background-color: #191C24; color: green;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Testimonial?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Are you sure you want to delete id {{$testimonials->id}}?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
+                            
+                            <form action="{{ route('destroytestimonial',$testimonials->id) }} " method="POST" >
+                                @csrf
+                                @method('DELETE')
+                      
+                                <button class="btn btn-outline-success" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div> {{-- end of deleteModal --}}
+                        </tr>
+                        
+                        @elseif($testimonials->author == Auth::user()->name)
                         <tr>
                             <td>{{++$i}}</td>
                             <td><img src="{{ asset('storage/' . $testimonials->profile_img) }}" alt="Profile Image" style="max-width: 150px; max-height: 150px;">
@@ -162,6 +206,7 @@
 
 
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                    

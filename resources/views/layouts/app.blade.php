@@ -59,7 +59,8 @@
                             <img class="rounded-circle" src={{asset("assets/img/default_profile.png")}} alt="" style="width: 40px; height: 40px;">
             
                         @elseif((Auth::user()->role_name == 'Admin'))
-                            <img class="rounded-circle" src={{asset("assets/img/edit_picture.jpg")}} alt="" style="width: 40px; height: 40px;">
+                            {{-- <img class="rounded-circle" src={{asset("assets/img/edit_picture.jpg")}} alt="" style="width: 40px; height: 40px;"> --}}
+                            <img class="rounded-circle" src={{ asset('storage/' . Auth::user()->profile_image) }} alt="" style="width: 40px; height: 40px;">
                         @endif
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
@@ -103,7 +104,8 @@
                             <img class="rounded-circle" src={{asset("assets/img/default_profile.png")}} alt="" style="width: 40px; height: 40px;">
             
                         @elseif((Auth::user()->role_name == 'Admin'))
-                            <img class="rounded-circle" src={{asset("assets/img/edit_picture.jpg")}} alt="" style="width: 40px; height: 40px;">
+                            {{-- <img class="rounded-circle" src={{asset("assets/img/edit_picture.jpg")}} alt="" style="width: 40px; height: 40px;"> --}}
+                            <img class="rounded-circle" src={{ asset('storage/' . Auth::user()->profile_image) }} alt="" style="width: 40px; height: 40px;">
                         @endif
                             <span class="d-none d-lg-inline-flex">{{ strtoupper(Auth::user()->name) }}</span>
                         </a>

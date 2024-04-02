@@ -40,11 +40,14 @@
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <form action="{{route('loginpost')}}" method="POST">
                             @csrf
-        
-                            @if(Session::has('error'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ Session::get('error') }}
-                            </div>
+                            @if(Session::has('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @elseif(Session::has('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ Session::get('error') }}
+                                </div>
                             @endif
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="{{route('viewtowelcome')}}" class="">

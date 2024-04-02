@@ -20,7 +20,7 @@
                             <i class="bi bi-diagram-3 fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Projects</p>
-                                <h6 class="mb-0">4</h6>
+                                <h6 class="mb-0">{{$countportfolio}}</h6>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <i class="bi bi-card-text fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Certificates</p>
-                                <h6 class="mb-0">6</h6>
+                                <h6 class="mb-0">{{$countcertificate}}</h6>
                             </div>
                         </div>
                     </div>

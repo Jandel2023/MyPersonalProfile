@@ -53,6 +53,8 @@
   padding: 15px;
   border-radius: 15px;
 }
+
+
   </style>
 
   <!-- ======= Header ======= -->
@@ -115,24 +117,38 @@
             where I am in my third year of studies. With a passion for innovation and a keen interest in the
             ever-evolving landscape of IT, I am eager to explore the realms of programming, networking, and beyond.
           </p>
+        
           <div class="row">
             <div class="col-lg-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>2 Sept. 1997</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.jandel.webactivities.online</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>09201985437</span></li>
+                @foreach($admins as $admin)
+                @php
+                $formattedBirthday = date('m/d/y', strtotime($admin->age));
+              @endphp
+                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{$formattedBirthday}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>{{$admin->website}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{$admin->phone}}</span></li>
                 <li><i class="bi bi-chevron-right"></i> <strong>Province:</strong> <span>Leyte, Hindang 6523</span></li>
+                @endforeach
               </ul>
             </div>
             <div class="col-lg-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>26</span></li>
+                @foreach($admins as $admin)
+                @php
+                      $birthdate = \Carbon\Carbon::parse($admin->age);
+                      $age = $birthdate->age;
+                  @endphp
+                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ $age }}</span></li>
+              @endforeach
+
                 <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>College</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>jandellopez1997@gmail.com</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{$admin->email}}</span></li>
                 <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
               </ul>
             </div>
           </div>
+       
           <p>
             Beyond the confines of textbooks and lectures, I am fueled by a myriad of interests and passions.
             An avid explorer of technology, I'm often found tinkering with gadgets, experimenting with new software,
@@ -728,6 +744,7 @@
       <div class="row portfolio-container">
 
         @foreach($portfolios as $portfolio)
+      
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <a href="{{$portfolio->portfolio_url}}" target="blank">
           <div class="portfolio-wrap">
@@ -741,8 +758,9 @@
               </div>
             </div>
           </div>
-          </a>
+        </a>
         </div>
+   
         @endforeach
 
   
@@ -774,7 +792,7 @@
           <div class="info-box">
             <i class="bx bx-map"></i>
             <h3>My Address</h3>
-            <p>Brgy. Baldoza Hindang, Leyte 6523 Philippines</p>
+            <p>{{$admin->address}}</p>
           </div>
         </div>
 
@@ -795,7 +813,7 @@
           <div class="info-box">
             <i class="bx bx-envelope"></i>
             <h3>Email Me</h3>
-            <p>jandellopez1997@gmail.com</p>
+            <p>{{$admin->email}}</p>
           </div>
         </div>
         <div class="col-md-6 mt-4 d-flex align-items-stretch">

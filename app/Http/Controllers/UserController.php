@@ -81,11 +81,9 @@ class UserController extends Controller
                 $user->email = $request->email;
                 $user->role_name = "Spectator";
                 $user->password = Hash::make($request->password);
-
-
-
                 $user->save();
-                return back()->with('success', 'Sign-up successfully');
+                
+                return redirect()->route('login')->with('success', 'Sign-up successfully, Please Login.');
             }
             
         catch (\Illuminate\Database\QueryException $e) 
@@ -106,35 +104,35 @@ class UserController extends Controller
     {
         //
         $user = Auth::user();
-        return view('editprofile',compact('user'));
+        return view('users.editprofile',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function updateprofile(Request $request): RedirectResponse
+    public function updateprofile(Request $request, User $user): RedirectResponse
     {
         try{
         $user = Auth::user();
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255' . $user->id,
+        $data = $request->validate([
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'address' => 'nullable',
+            'email' => 'required|string|email|max:255' . $user->id,
+            'contact' => 'nullable',
+            'website' => 'nullable',
+            
+        
         ]);
 
 
     // Check if a profile image is provided
-    if ($request->hasFile('profile_image')) {
-        $image = $request->file('profile_image');
-        $path = $image->store('public/profile_images');
-        $user->profile_image = str_replace('public/', '', $path);
-    }
+ if ($request->hasfile('profile_image')){
+    $profilePath = $request->file('profile_image')->store('profileimage', 'public');
+    $data['profile_image'] = $profilePath;
+ }
 
-    $user->name = $request->input('name');
-    $user->email = $request->input('email');
-    
-    $user->save();
-
+ $user->update($data);
 
     return back()->with('success', 'Profile updated successfully');
 }
@@ -203,8 +201,10 @@ class UserController extends Controller
          $blogs = Blog::all();
         $certificates = Certificates::all();
         $countcert = Certificates::count();
+        $admins = User::where('role_name', 'Admin')->get();
+
      
-         return view('welcome',compact('testimonials','portfolios','blogs','certificates','countcert'));
+         return view('welcome',compact('testimonials','portfolios','blogs','certificates','countcert','admins'));
      }
 
 

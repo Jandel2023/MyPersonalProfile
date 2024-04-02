@@ -91,7 +91,7 @@ public function update(Request $request, Blog $blog): RedirectResponse
         $blog->update($data);
 
         return redirect()->route('blogs.index')
-                        ->with('success','Testimonial updated successfully.');
+                        ->with('success','Blog updated successfully.');
     } catch (\Illuminate\Database\QueryException $e) {
         // Handle database query exceptions if needed
         return redirect()->back()->with('error', 'An error occurred during testimonial update.');

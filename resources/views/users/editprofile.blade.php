@@ -31,8 +31,21 @@
 
                         </div>
                         <div class="mb-3">
+                            <label for="address" class="form-label">Address:</label>
+                            <input type="text" name="address" class="form-control" id="address"  value="{{Auth::user()->address}}" placeholder="address" required>
+
+                        </div>
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email Address:</label>
                             <input type="email" name="email" class="form-control" id="email" value="{{Auth::user()->email}}" placeholder="email"  required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact" class="form-label">Contact:</label>
+                            <input type="tel" name="contact" class="form-control" id="contact" value="{{Auth::user()->phone}}" placeholder="contact"  required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="website" class="form-label">Website:</label>
+                            <input type="url" name="website" class="form-control" id="contact" value="{{Auth::user()->website}}" placeholder="contact"  required>
                         </div>
                         <div class="mb-3">
                             <div class="d-grid">
@@ -45,7 +58,5 @@
         </div>
     </div>
 
-    
-</body>
-</html>
+
 @endsection

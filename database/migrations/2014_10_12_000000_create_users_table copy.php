@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('role_name')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('age')->nullable();
+            $table->date('age')->default('1997-09-02');
             $table->string('address')->nullable();
             $table->string('website')->nullable();
             $table->unsignedBigInteger('phone')->nullable();

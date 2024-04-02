@@ -42,8 +42,8 @@ class TestimonialController extends Controller
             $data = $request->validate([
                 'profile_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'content' => 'required',
-                'author' => 'required',
                 'job_title' => 'required',
+                'author' => 'required',
             ]);
     
             if ($request->hasFile('profile_img')) {
