@@ -54,7 +54,7 @@ class BlogController extends Controller
                 return back()->with('error', 'Duplicate entry error occurred.');
             }
     
-            return back()->with('error', 'An error occurred during testimonial creation.');
+            return back()->with('error', 'An error occurred during blog creation.');
         }
     }
     

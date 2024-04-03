@@ -94,11 +94,16 @@
             <div class="table-wrapper bg-secondary">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-8"><h2>Users</h2></div>
+                        <div class="col-sm-8"><h2>Spectators</h2></div>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</button>
+                            {{-- <button type="button" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</button> --}}
                         </div>
                     </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                 </div>
                 <table class="table table-bordered table-sm">
                     <thead>
@@ -107,22 +112,49 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Action</th>
+                            <th style="text-align: center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($users as $user)
                         <tr>
-                            <td>1</td>
-                            <td>Jandel Lopez</td>
-                            <td>jandellopez1997@gmail.com</td>
-                            <td>Admin</td>
-                            <td>
-                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <td>{{++$i}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->role_name}}</td>
+                            <td style="text-align: center">
+                                {{-- <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> --}}
+                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$user->id}}"><i class="material-icons">&#xE872;</i></a>
                             </td>
+                <!-- delete Modal-->
+               <div class="modal fade" id="deleteModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background-color: #191C24; color: green;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Spectator?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Are you sure you want to delete id {{$user->id}}?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
+                            
+                            <form action="{{ route('destroyuser',$user->id) }} " method="POST" >
+                                @csrf
+                                @method('DELETE')
+                      
+                                <button class="btn btn-outline-success" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                {{-- end of deleteModal --}}
                         </tr>
-                        
+                        @endforeach
                     </tbody>
                 </table>
             </div>

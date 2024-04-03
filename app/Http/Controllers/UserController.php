@@ -19,7 +19,9 @@ class UserController extends Controller
     //
     public function users(): view
     {
-        return view('users.users');
+        $users = User::where('role_name','Spectator')->get();
+        return view('users.users',compact('users'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
    public function login(): view
@@ -27,6 +29,13 @@ class UserController extends Controller
         
         return view('login');
     }
+
+    public function destroy(User $user): RedirectResponse
+{
+    $user->delete();
+     
+    return redirect()->back()->with('success','Spectator deleted successfully');
+}
 
 
 

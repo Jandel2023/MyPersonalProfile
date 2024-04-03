@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::delete('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/users', [UserController::class, 'users'])->name('users');
+    Route::delete('/users/{user}',[UserController::class,'destroy'])->name('destroyuser');
     Route::get('/editprofile', [UserController::class, 'editprofile'])->name('editprofile');
     Route::post('/updateprofile', [UserController::class, 'updateprofile'])->name('updateprofile');
     Route::get('/changepassword', [UserController::class, 'changepass'])->name('changepassword');
