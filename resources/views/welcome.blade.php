@@ -85,7 +85,7 @@
         <a href="https://www.facebook.com/demski.chu2xbrothers" target="blank" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2Fdemski.21%3Futm_source%3Dqr%26igsh%3DMzNlNGNkZWQ4Mg%253D%253D%26fbclid%3DIwAR3oZEmOR1MIPLoMA4JmGEf8KjgH7Wm4KIkNu7EZcPgT4dsR64aYnPAEffA&h=AT2-6ucv-wsiNXjmDDzHqhols_mK_QVeXghd0GycCagi1goPylofQeRMA0gdcz3CawSVrPPdoo64Qjk7ikRMFlY_uHqjjQs2bdcIoyhxtzyS0OTXGR4mviOgQPLrInLGftW0kw" target="blank" class="instagram"><i class="bi bi-instagram"></i></a>
         <a href="https://www.linkedin.com/in/jandel-lopez-85a6272ba?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BdTdMV26eSIunEZAja3gO4A%3D%3D" target="blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        <button type="button" id="login" onclick="loginclick()" class="btn btn-outline-success">Log-in</button>
+        <button type="button" id="login" onclick="loginclick()" class="btn btn-outline-success">Sign-in</button>
         <button type="button" id="signup" onclick="signupclick()" class="btn btn-outline-success">Sign-up</button>
       </div>
       </div>
@@ -601,6 +601,7 @@
         <h2>Certificates</h2>
       </div>
 
+      <div class="d-flex justify-content align-items-center">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             @for($i = 0; $i < $countcert; $i++)
@@ -609,12 +610,14 @@
         </div>
         <div class="carousel-inner">
             @foreach($certificates as $index => $certificate)
-                <div class="carousel-item @if($index === 0) active @endif  justify-content-center align-items-center " data-bs-interval="10000" style="padding-left: 53px;">
+           
+                <div class="carousel-item @if($index === 0) active @endif " data-bs-interval="10000" >
                     <img src="{{ asset('storage/'. $certificate->img_cert) }}" class="img-fluid" style="width: 900px; height: 500px;" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <!-- Carousel caption content goes here -->
                     </div>
                 </div>
+             
             @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -626,7 +629,7 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    
+  </div>
      
      
 
@@ -895,7 +898,7 @@
   <script>
 
   function loginclick(){
-    window.location.href = "login";
+    window.location.href = "signin";
   }
 
   function signupclick(){

@@ -31,7 +31,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'guest'], function () {
     Route::delete('/welcome', [UserController::class, 'logout'])->name('logout');
-    Route::get('/login', [UserController::class, 'login'])->name('login');
+    Route::get('/signin', [UserController::class, 'login'])->name('login');
     Route::post('/loginpost', [UserController::class, 'loginPost'])->name('loginpost');
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup', [UserController::class, 'new_signup'])->name('new_signup');

@@ -72,11 +72,12 @@
                     @if(Auth::user()->role_name == 'Admin')
                     <a href="{{route('dashboard')}}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="{{route('blogs.index')}}" class="nav-item nav-link"><i class="bi bi-file-text me-2"></i>Blog</a>
+                    {{-- <a href="#" class="nav-item nav-link"><i class="bi bi-file-text me-2"></i>Skills</a> --}}
                     <a href="{{route('certificates.index')}}" class="nav-item nav-link"><i class="bi bi-card-text me-2"></i>Certificates</a>
                     <a href="{{route('portfolio')}}" class="nav-item nav-link"><i class="bi bi-folder-fill me-2"></i>Portfolio</a>
                     <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="bi bi-person-lines-fill me-2"></i>Testimonials</a>
                     <a href="{{route('users')}}" class="nav-item nav-link"><i class="bi bi-people-fill me-2"></i>Spectators</a>
-                    @elseif(Auth::user()->role_name == 'Spectator')\
+                    @elseif(Auth::user()->role_name == 'Spectator')
                     <a href="{{route('testimonial')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Testimonials</a>
                     @endif
                 </div>

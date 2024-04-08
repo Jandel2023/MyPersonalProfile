@@ -94,72 +94,83 @@
             <div class="table-wrapper bg-secondary">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-8"><h2>Spectators</h2></div>
+                        <div class="col-sm-8"><h2>Blogs</h2></div>
                         <div class="col-sm-4">
-                            {{-- <button type="button" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</button> --}}
+                            <a href="{{ route('blogs.create') }}" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</a>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
                     </div>
-                @endif
+                    @endif
                 </div>
-                <table class="table table-bordered table-sm">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th style="width: 25px;">#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th style="text-align: center">Action</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Author</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
+                        @foreach($testimonial as $testimonials)
                         <tr>
                             <td>{{++$i}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->role_name}}</td>
-                            <td style="text-align: center">
-                                {{-- <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> --}}
-                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$user->id}}"><i class="material-icons">&#xE872;</i></a>
+                            <td><img src="{{ asset('storage/' . $testimonials->image_blog) }}" alt="Profile Image" style="max-width: 150px; max-height: 150px;">
                             </td>
-                <!-- delete Modal-->
-               <div class="modal fade" id="deleteModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="background-color: #191C24; color: green;">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Delete Spectator?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Are you sure you want to delete id {{$user->id}}?</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
-                            
-                            <form action="{{ route('destroyuser',$user->id) }} " method="POST" >
-                                @csrf
-                                @method('DELETE')
-                      
-                                <button class="btn btn-outline-success" type="submit">Delete</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                {{-- end of deleteModal --}}
+                            <td>{{$testimonials->title}}</td>
+                            <td>{{$testimonials->content}}</td>
+                            <td>{{$testimonials->author}}</td>
+                            <td>
+                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                <a href="{{route('blogs.edit',$testimonials->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$testimonials->id}}"><i class="material-icons">&#xE872;</i></a>
+                            </td>
+
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal{{ $testimonials->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color: #191C24; color: green;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Blog?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this blog?
+                <img src="{{ asset('storage/' . $testimonials->image_blog) }}" alt="Profile Image" style="max-width: 100px; max-height: 100px; border-radius:50%;">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
+                
+                <form action="{{ route('blogs.destroy', $testimonials->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-success" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
                         </tr>
                         @endforeach
                     </tbody>
+                   
                 </table>
-                {!! $users->links('pagination::bootstrap-5') !!}
+                {!! $testimonial->links('pagination::bootstrap-5') !!}
             </div>
         </div>
     </div>     
+
 
 @endsection

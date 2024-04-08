@@ -19,7 +19,7 @@ class UserController extends Controller
     //
     public function users(): view
     {
-        $users = User::where('role_name','Spectator')->get();
+        $users = User::where('role_name','Spectator')->paginate(5);
         return view('users.users',compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -92,7 +92,7 @@ class UserController extends Controller
                 $user->password = Hash::make($request->password);
                 $user->save();
                 
-                return redirect()->route('login')->with('success', 'Sign-up successfully, Please Login.');
+                return redirect()->route('login')->with('success', 'Sign-up successfully, Please Sign-In.');
             }
             
         catch (\Illuminate\Database\QueryException $e) 
