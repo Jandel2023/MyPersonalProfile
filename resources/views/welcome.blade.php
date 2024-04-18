@@ -426,7 +426,9 @@
         <p></p>
       </div>
 
+      
       @foreach($blogs as $blog)
+      @if($blog->status === 'published')
       <div class="row py-4">
         <div class="col-lg-4" data-aos="fade-right">
             <img src="{{ asset('storage/'. $blog->image_blog) }}" class="img-fluid" style="width: 200px; height: 150px;" alt="">
@@ -444,6 +446,7 @@
           </div>
         </div>
     </div>
+    @endif
     @endforeach
     
 

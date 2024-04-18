@@ -36,6 +36,11 @@
 
                         </div>
                         <div class="mb-3">
+                            <label for="address" class="form-label">Dashboardname:</label>
+                            <input type="text" name="dashboardname" class="form-control" id="address"  value="{{Auth::user()->dashboardname}}" placeholder="dashboardname" required>
+
+                        </div>
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email Address:</label>
                             <input type="email" name="email" class="form-control" id="email" value="{{Auth::user()->email}}" placeholder="email"  required>
                         </div>

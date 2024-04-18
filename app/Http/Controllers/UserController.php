@@ -69,7 +69,7 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/')->with('status', 'You have been logged out.');
+        return redirect('welcome')->with('status', 'You have been logged out.');
        
     }
 
@@ -79,6 +79,7 @@ class UserController extends Controller
        
         try { 
             $request->validate([
+                'dashboardname' => 'required',
                 'name' => 'required',
                 'email' => 'required',
                 'password' => 'required',
@@ -86,6 +87,7 @@ class UserController extends Controller
             ]);
 
                 $user = new User();
+                $user->dashboardname = $request->dashboardname;
                 $user->name = $request->name;
                 $user->email = $request->email;
                 $user->role_name = "Spectator";
@@ -130,6 +132,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255' . $user->id,
             'phone' => 'nullable',
             'website' => 'nullable',
+            'dashboardname' => 'nullable',
             
         
         ]);

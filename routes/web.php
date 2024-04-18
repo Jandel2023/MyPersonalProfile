@@ -24,12 +24,17 @@ use App\Http\Controllers\UserController;
 */
 
 
-Route::get('/', function () {
-    return view ('welcome');
-});
+// Route::get('/', function () {
+//     return view ('welcome');
+// });
+
 
 
 Route::group(['middleware' => 'guest'], function () {
+    Route::get('/welcome', [UserController::class, 'viewtowelcome'])->name('backtowelcome');
+
+    Route::get('/', [PortfolioController::class, 'viewtowelcome'])->name('fromportfolio');
+
     Route::delete('/welcome', [UserController::class, 'logout'])->name('logout');
     Route::get('/signin', [UserController::class, 'login'])->name('login');
     Route::post('/loginpost', [UserController::class, 'loginPost'])->name('loginpost');
@@ -37,8 +42,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/signup', [UserController::class, 'new_signup'])->name('new_signup');
 
 
-    Route::get('/', [UserController::class, 'viewtowelcome'])->name('viewtowelcome');
-    // Route::get('/', [PortfolioController::class, 'viewtowelcome'])->name('fromportfolio');
+   
+
     
 });
 
@@ -56,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
 
     Route::resource('/blogs', BlogController::class);
-   
+    Route::get('/blogview/{id}', [BlogController::class, 'blogview'])->name('blogview');
 
     Route::resource('/certificates', CertificateController::class);
 
@@ -75,36 +80,47 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/edittestimonial/{testimonial}', [TestimonialController::class, 'update'])->name('updatetestimonial');
 
 
-});
-
-
-Route::group(['middleware' => 'Spectator'], function(){
-    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
-
-    // Route::delete('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/users', [UserController::class, 'users'])->name('users');
-    Route::get('/editprofile', [UserController::class, 'editprofile'])->name('editprofile');
-    Route::post('/updateprofile', [UserController::class, 'updateprofile'])->name('updateprofile');
-    Route::get('/changepassword', [UserController::class, 'changepass'])->name('changepassword');
-    Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
-
-    Route::resource('/blogs', BlogController::class);
-   
-
-    Route::resource('/certificates', CertificateController::class);
-
-    Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
-    Route::get('/addnewportfolio', [PortfolioController::class, 'addnewportfolio'])->name('addnewportfolio');
-    Route::post('/createportfolio', [PortfolioController::class, 'createportfolio'])->name('createportfolio');
-    Route::get('/editportfolio/{id}', [PortfolioController::class, 'edit'])->name('editportfolio');
-    Route::put('/editportfolio/{portfolio}', [PortfolioController::class, 'update'])->name('updateportfolio');
-    Route::delete('/destroyportfolio/{portfolio}', [PortfolioController::class, 'destroy'])->name('destroyportfolio');
     
-   
-   
-
+    Route::group(['middleware' => 'Spectator'], function(){
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+       
+    
+        // Route::delete('/logout', [UserController::class, 'logout'])->name('logout');
+        Route::get('/users', [UserController::class, 'users'])->name('users');
+        Route::get('/editprofile', [UserController::class, 'editprofile'])->name('editprofile');
+        Route::post('/updateprofile', [UserController::class, 'updateprofile'])->name('updateprofile');
+        Route::get('/changepassword', [UserController::class, 'changepass'])->name('changepassword');
+        Route::post('/changepassword', [UserController::class, 'changepassword'])->name('changepassword');
+        Route::get('/', [UserController::class, 'viewtowelcome'])->name('viewtowelcome');
+    
+    
+        Route::resource('/blogs', BlogController::class);
+       
+    
+        Route::resource('/certificates', CertificateController::class);
+    
+        Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
+        Route::get('/addnewportfolio', [PortfolioController::class, 'addnewportfolio'])->name('addnewportfolio');
+        Route::post('/createportfolio', [PortfolioController::class, 'createportfolio'])->name('createportfolio');
+        Route::get('/editportfolio/{id}', [PortfolioController::class, 'edit'])->name('editportfolio');
+        Route::put('/editportfolio/{portfolio}', [PortfolioController::class, 'update'])->name('updateportfolio');
+        Route::delete('/destroyportfolio/{portfolio}', [PortfolioController::class, 'destroy'])->name('destroyportfolio');
+        
+      
+    //    Route::get('/',[TestimonialController::class,'viewtowelcome'])->name('/');
+    //    Route::get('/welcome', [UserController::class, 'viewtowelcome'])->name('backtowelcome');
+    
+       Route::get('/signin', [UserController::class, 'login'])->name('login');
+       Route::post('/loginpost', [UserController::class, 'loginPost'])->name('loginpost');
+       Route::get('/signup', [UserController::class, 'signup'])->name('signup');
+       Route::post('/signup', [UserController::class, 'new_signup'])->name('new_signup');
+      
+    
+    });
+ 
 });
+
+
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

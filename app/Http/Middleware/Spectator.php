@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class Spectator
 {
@@ -16,11 +17,17 @@ class Spectator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check()) {
-            if (auth()->user()->role_name == 'Spectator') {
-                Session::flash('unauthorized', 'You do not have permission to access this page.');
+        
+    
+        if ($request->route()->getName() == 'welcome' || $request->route()->getName() === null) {
+            return $next($request);
+        }
+
+        if (Auth::check()) {
+            if (Auth::user()->role_name !== 'Admin') {
+                Session::flash('unauthorized', 'You do not have permission to access this page. Please log out!');
                 return redirect()->back();
-            } elseif (auth()->user()->role_name === null) {
+            } elseif (Auth::user()->role_name === null) {
                 Session::flash('unauthorized', 'Your role is not specified. Please contact the administrator.');
                 return redirect()->back();
             }
@@ -30,5 +37,6 @@ class Spectator
         }
       
         return $next($request);
+       
     }
 }

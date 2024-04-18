@@ -24,6 +24,7 @@ class User extends Authenticatable
         'age',
         'address',
         'website',
+        'dashboardname',
         'phone',
         'profile_image',
         

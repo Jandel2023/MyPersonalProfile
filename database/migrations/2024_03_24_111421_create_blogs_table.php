@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('content')->nullable();
             $table->string('author')->nullable();
+            $table->string('status')->nullable();
+            $table->string('dashboardname')->nullable();
             $table->integer('views')->nullable();
             $table->integer('heart_react')->nullable();
             $table->string('comment')->nullable();

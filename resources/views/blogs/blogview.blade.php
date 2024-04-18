@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-
+<link href={{asset("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css")}} rel="stylesheet">
 
 <style>
     .table-wrapper {
@@ -97,7 +97,7 @@
                     <div class="row">
                         <div class="col-sm-8"><h2>Blogs</h2></div>
                         <div class="col-sm-4">
-                            <a href="{{ route('blogs.create') }}" class="btn btn-outline-success add-new"><i class="fa fa-plus"></i> Add New</a>
+                            <a href="{{ route('blogs.index') }}" class="btn btn-outline-danger"><i class="fa fa-plus"></i> Back</a>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -109,66 +109,36 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="width: 25px;">#</th>
+                      
+                            <th>Blog_Image</th>
                             <th>Title</th>
+                            <th>Content</th>
+                            <th>Author</th>
                             <th>Status</th>
                             <th>Date</th>
                            
-                            <th style="width: 150px;">Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($testimonial as $testimonials)
+                       
                         <tr>
-                            <td>{{++$i}}</td>
-                          
-                            <td>{{$testimonials->title}}</td>
-                            <td>{{$testimonials->status}}</td>
-                            <td>{{$testimonials->created_at}}</td>
+                         
+                            <td><img src="{{ asset('storage/' . $testimonial->image_blog) }}" alt="Blog Image" style="max-width: 120px; max-height: 150px;">
+                            <td>{{$testimonial->title}}</td>
+                            <td>{{$testimonial->content}}</td>
+                            
+                            <td>{{$testimonial->author}}</td>
+                            <td>{{$testimonial->status}}</td>
+                            <td>{{$testimonial->created_at}}</td>
                            
-                            <td>
-                                <a href="{{ route('blogview',$testimonials->id) }}" class="view" title="view" data-toggle="tooltip"> <i class="material-icons">&#xE8F4;</i></a>
-                                <a href="{{route('blogs.edit',$testimonials->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal{{$testimonials->id}}"><i class="material-icons">&#xE872;</i></a>
-                            </td>
-
-
-
-<!-- Delete Modal -->
-<div class="modal fade" id="deleteModal{{ $testimonials->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="background-color: #191C24; color: green;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Blog?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete this blog?
-                <img src="{{ asset('storage/' . $testimonials->image_blog) }}" alt="Profile Image" style="max-width: 100px; max-height: 100px; border-radius:50%;">
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
-                
-                <form action="{{ route('blogs.destroy', $testimonials->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-outline-success" type="submit">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
+                            
                         </tr>
-                        @endforeach
+                       
                     </tbody>
                    
                 </table>
-                {!! $testimonial->links('pagination::bootstrap-5') !!}
+              
             </div>
         </div>
     </div>     

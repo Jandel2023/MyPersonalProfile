@@ -119,6 +119,10 @@
                             <label for="floatingText">Username</label>
                         </div>
                         <div class="form-floating mb-3">
+                            <input type="text" name="dashboardname" class="form-control" id="floatingText" placeholder="dashboardname" required autofocus>
+                            <label for="floatingText">dashboardname</label>
+                        </div>
+                        <div class="form-floating mb-3">
                             <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@gmail.comd" required>
                             <label for="floatingInput">Email address</label>
                         </div>

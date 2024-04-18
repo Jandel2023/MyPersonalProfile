@@ -14,6 +14,8 @@ class Blog extends Model
         'title',
         'content',
         'author',
+        'status',
+        'dashboardname',
         'views',
         'heart_react',
         'comment',

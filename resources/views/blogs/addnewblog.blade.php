@@ -34,11 +34,25 @@
                         <input type="text" name="title" class="form-control" id="floatingInput" placeholder="title" required>
                         <label for="floatingInput">Title</label>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="dashboardname" class="form-control" id="floatingInput" placeholder="Dashboardname" required>
+                        <label for="floatingInput">Dashboardname</label>
+                    </div>
                     <div class="form-floating mb-4">
                         <textarea name="content" class="form-control" id="floatingPassword" placeholder="work" required></textarea>
                         <label for="floatingPassword">Content</label>
                     </div>
-                    <div class="form-floating mb-4" >
+                    <div class="form-floating mb-4">
+                        <div class="form-group"><br>
+                            <strong>Status:</strong>
+                            <select class="form-control" name="status">
+                            <option selected disabled>--select status--</option>
+                            <option>published</option>
+                            <option>draft</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-4" hidden >
                         <input type="text" name="author" class="form-control" id="floatingPassword" placeholder="author" value="{{Auth::user()->name}}" readonly>
                         <label for="floatingPassword">Author</label>
                     </div>

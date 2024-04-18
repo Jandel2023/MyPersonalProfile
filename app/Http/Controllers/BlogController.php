@@ -29,6 +29,14 @@ class BlogController extends Controller
         return view('blogs.addnewblog');
     }
 
+    public function blogview($id){
+
+            $testimonial = Blog::findOrFail($id);
+            // $testimonial = Blog::all();
+            return view('blogs.blogview', compact('testimonial'));
+        
+    }
+
     public function store(Request $request)
     {
         try {
@@ -36,6 +44,7 @@ class BlogController extends Controller
                 'image_blog' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'title' => 'required',
                 'content' => 'required',
+                'status' => 'required',
                 'author' => 'required',
             ]);
     
@@ -47,7 +56,8 @@ class BlogController extends Controller
             $blog = Blog::create($data);
     
             return redirect()->route('blogs.index')->with('success', 'Blog added successfully');
-        } catch (\Illuminate\Database\QueryException $e) {
+        } 
+        catch (\Illuminate\Database\QueryException $e) {
             $errorCode = $e->errorInfo[1];
             
             if ($errorCode == 1062) {
@@ -80,6 +90,7 @@ public function update(Request $request, Blog $blog): RedirectResponse
             // 'image_blog' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'title' => 'required',
             'content' => 'required',
+            'status' => 'required',
             'author' => 'required',
         ]);
 
